@@ -27,23 +27,12 @@ require(__DIR__."/../../partials/nav.php");?>
      //same as above but for password
      $password = se($_POST, "password", "", false);
      //TODO 3: validate/use
-     $errors = [];
-     if(empty($email)){
-        array_push($errors, "Email must be set");
-     }
+     
+     
      //sanitize
      $email = sanitize_email($email);
-    if (is_valid_email($email)) {
-        array_push($errors, "Email is invalid");
-    }
-     if(empty($password)){
-         array_push($errors, "Password must be set");
-     }
-     if(strlen($password) < 8){
-         array_push($errors, "Password must be 8 or more characters");
-     }
      if(count($errors) > 0){
-         echo "<pre>" . var_export($errors, true) . "</pre>";
+         flash(var_export($errors, true));
      }
      else{
          //TODO 4
@@ -57,19 +46,24 @@ require(__DIR__."/../../partials/nav.php");?>
                      $hash = $user["password"];
                      unset($user["password"]);
                      if(password_verify($password, $hash)){
-                         echo "Welcome, $email";
+                         flash("Welcome, $email");
                          $_SESSION["user"] = $user;
                          die(header("Location: home.php"));
                      }
                      else
                      {
-                         echo "Invalid email";
+                         flash("Password doesn't match");
                      }
+                 }else{
+                     flash("Invalid email");
                  }
              }
          }catch(Exception $e){
-             echo "<pre>" . var_export($e, true) . "</pre>";
+             flash(var_export($e, true));
          }
      }
  }
+?>
+<?php
+require(__DIR__ . "/../../partials/flash.php");
 ?>

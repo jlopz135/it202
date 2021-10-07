@@ -33,40 +33,24 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     //TODO 3
 
 
-    $errors = [];
-    if (empty($email)) {
-        array_push($errors, "Email must not be empty");
-    }
-    $email = sanitize_email($email);
-    if (is_valid_email($email)) {
-        array_push($errors, "Email is invalid");
-    }
-    if (empty($password)) {
-        array_push($errors, "Password must not be empty");
-    }
-    if (empty($confirm)) {
-        array_push($errors, "Confirm Password must not be empty");
-    }
-    if (strlen($password) < 8) {
-        array_push($errors, "Password too short");
-    }
-    if (strlen($password) > 0 && $password !== $confirm) {
-        array_push($errors, "Passwords must match");
-    }
+
     if (count($errors) > 0) {
-        echo "<pre>" . var_export($errors, true) . "</pre>";
+        flash(var_export($errors, true));
     } else {
-        echo "Welcome, $email";
+        flash("Welcome, $email");
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
         $stmt = $db->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)");
         try {
             $stmt->execute([":email" => $email, ":password" => $hash]);
-            echo "You've registered, yay...";
+            flash("You've registered, yay...");
         } catch (Exception $e) {
-            echo "There was a problem registering";
-            echo "<pre>" . var_export($e, true) . "</pre>";
+            flash("There was a problem registering");
+            flash(var_export($e, true));
         }
     }
 }
+?>
+<?php
+require(__DIR__ . "/../../partials/flash.php");
 ?>
