@@ -32,6 +32,78 @@
      - Screenshots
        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
+  - [x] (10/12/2021) User will be able to login to their account
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 https://github.com/jlopz135/it202-009/pull/15
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
+  - [x] (10/12/2021) User will be able to logout
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 https://github.com/jlopz135/it202-009/pull/15
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
+  - [ ] (MM/DD/YYYY) Basic Security rules implemented
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
+  - [ ] (MM/DD/YYYY) Basic Roles implemented
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
+  - [ ] (MM/DD/YYYY) Site should have basic styles/theme applied; everything should be styled
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
+  - [ ] (MM/DD/YYYY) Any output messages/errors should be "user friendly"
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
+  - [ ] (MM/DD/YYYY) User will be able to see their profile
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
+  - [ ] (MM/DD/YYYY) User will be able to edit their profile
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Pull Requests
+        - PR link #1 
+     - Screenshots
+       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 description explaining what you're trying to show
 - Milestone 2
 - Milestone 3
 - Milestone 4
@@ -69,3 +141,13 @@
   8. Merge the updated dev branch into your production branch via a pull request
   9. Close any related issues that didn't auto close
     - You can edit the dropdown on the issue or drag/drop it to the proper column on the project board
+
+
+
+
+
+
+
+
+
+
