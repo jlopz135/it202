@@ -67,7 +67,6 @@
                 }
             };
         }
-        var swapped = false;
         // Create the paddles
         var paddleWidth = 25;
         var paddleHeight = 100;
@@ -80,7 +79,7 @@
         window.setInterval(function () {
             deg += 180;
             canvas.style.transform = "rotate(" + deg + "deg)";
-        }, 5000);
+        }, 20000);
 
         //end rotate
 
@@ -101,7 +100,7 @@
         for (let i = 0; i < ballsToSpawn; i++) {
             
             setTimeout(function () {
-                let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#000000');
+                let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
                 balls.push(ball);
                 ball.sX = ballSpeed;
                 ball.sY = ballSpeed / 2;
@@ -127,7 +126,7 @@
         function resetBalls() {
             for (let i = 0; i < balls.length; i++) {
                 let ball = balls[i];
-                
+                ballsToSpawn++;
                 resetBall(ball);
             }
         }
