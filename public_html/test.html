@@ -101,7 +101,7 @@
         to the function and process the logic per ball
         */
         var ballsToSpawn = 1;
-        for (let i = 0; i < ballsToSpawn; i++) {
+        for (let i = 0; i < (leftScore + rightScore +1); i++) {
 
             setTimeout(function () {
                 let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
