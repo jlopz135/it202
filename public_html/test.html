@@ -8,7 +8,7 @@
             margin-right: auto;
             align-content: center;
             text-align: center;
-
+            background-color: chocolate;
             height: 99%;
             padding: 0px;
         }
@@ -17,17 +17,19 @@
         body {
             padding: 0px;
             margin: 0px;
-
+            background-color: crimson;
             border: 1px solid pink;
         }
-   
+        canvas#canvas{
+            background-color: darkblue;
+        }
     </style>
 </head>
 
 <body>
     <h1>Crazy Pong</h1>
     <h3><a href="index.html">Back</a></h3>
-    <div id="center">
+    <div class="gradient" id="center">
         <canvas id="canvas" width="550px" height="550px"></canvas>
     </div>
     <span id="endGame"></span>
@@ -74,8 +76,8 @@
         var doublePoints = false;
         var paddleWidth = 25;
         var paddleHeight = 100;
-        var leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, crimson);
-        var rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, name);
+        var leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
+        var rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
 
         //why not rotate the canvas 180degrees every 20 sec?
 
@@ -181,7 +183,6 @@
         function menu() {
             erase();
             // Show the menu
-            var name = window.prompt("Enter Right Paddle Color: )");
             context.fillStyle = '#000000';
             context.font = '24px Arial';
             context.textAlign = 'center';
