@@ -231,7 +231,7 @@
         }
         function bounceBall(ball) {
             // Increase and reverse the X speed
-            let speed = false;
+            var speed = false;
             if (ball.sX > 0) {
                 ball.sX += 1;
                 // Add some "spin"
@@ -279,7 +279,7 @@
             // Score if the ball goes past a paddle
             if (ball.x < leftPaddle.x) {
                 if(speed){
-                    rightScores *= 2;
+                    rightScore *= 2;
                 }else{
                 rightScore++;
                 }
