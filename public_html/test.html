@@ -68,6 +68,7 @@
             };
         }
         // Create the paddles
+        var doublePoints = false;
         var paddleWidth = 25;
         var paddleHeight = 100;
         var leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
@@ -276,13 +277,13 @@
         function checkScore(ball) {
             // Score if the ball goes past a paddle
             if (ball.x < leftPaddle.x) {
-                
                 rightScore++;
+                doublePoints = false;
                 resetBall(ball);
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
-                
                 leftScore++;
+                doublePoints = false;
                 resetBall(ball);
                 ball.sX *= -1;
             }
@@ -323,7 +324,7 @@
                 ball.draw();
             }
 
-            
+            dubPts();
             // Draw the paddles and ball
             leftPaddle.draw();
             rightPaddle.draw();
@@ -343,6 +344,21 @@
             }
         }
 
+        function dubPts(){
+            if(doublePoints){
+                return;
+            }
+            if(leftScore > (rightScore*2)){
+                rightScore++;
+                console.log("added extra right point");
+                doublePoints = true;
+            }
+            if(rightScore > (leftScore*2)){
+                leftScore++;
+                console.log("added extra left point");
+                doublePoints= true;
+            }
+        }
         // Show the menu to start the game
         menu();
         canvas.focus();
