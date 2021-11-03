@@ -8,7 +8,7 @@
             margin-right: auto;
             align-content: center;
             text-align: center;
-           
+
             height: 99%;
             padding: 0px;
         }
@@ -18,7 +18,8 @@
             padding: 0px;
             margin: 0px;
         }
-        canvas#canvas{
+
+        canvas#canvas {
             border: 1px solid rgb(13, 217, 231);
         }
     </style>
@@ -110,15 +111,8 @@
                 ball.sY = ballSpeed / 2;
                 randomDir(ball);
             }, 500 * i);
-            for(let j =0; j < (leftScore + rightScore +1); j++){
-                setTimeout(function () {
-                let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
-                balls.push(ball);
-                ball.sX = ballSpeed;
-                ball.sY = ballSpeed / 2;
-                randomDir(ball);
-            }, 500 * i);
-            }
+
+
 
         }
         function randomDir(ball) {
@@ -290,11 +284,31 @@
             // Score if the ball goes past a paddle
             if (ball.x < leftPaddle.x) {
                 rightScore++;
+                for (let i = 0; i < ballsToSpawn; i++) {
+
+                    setTimeout(function () {
+                        let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
+                        balls.push(ball);
+                        ball.sX = ballSpeed;
+                        ball.sY = ballSpeed / 2;
+                        randomDir(ball);
+                    }, 500 * i);
+                }
                 doublePoints = false;
                 resetBall(ball);
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
+                for (let i = 0; i < ballsToSpawn; i++) {
+
+                    setTimeout(function () {
+                        let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
+                        balls.push(ball);
+                        ball.sX = ballSpeed;
+                        ball.sY = ballSpeed / 2;
+                        randomDir(ball);
+                    }, 500 * i);
+                }
                 doublePoints = false;
                 resetBall(ball);
                 ball.sX *= -1;
