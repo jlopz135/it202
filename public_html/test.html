@@ -77,9 +77,9 @@
         //why not rotate the canvas 20degrees every 5 sec?
         var deg = 0;
         window.setInterval(function () {
-            deg += 180;
+            deg += 0;
             canvas.style.transform = "rotate(" + deg + "deg)";
-        }, 5000);
+        }, 60);
         //end rotate
 
         // Keep track of the score
@@ -97,7 +97,7 @@
         */
         var ballsToSpawn = 1;
         for (let i = 0; i < ballsToSpawn; i++) {
-            
+            ballsToSpawn++;
             setTimeout(function () {
                 let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#000000');
                 balls.push(ball);
@@ -125,6 +125,7 @@
         function resetBalls() {
             for (let i = 0; i < balls.length; i++) {
                 let ball = balls[i];
+                
                 resetBall(ball);
             }
         }
@@ -277,12 +278,12 @@
             if (ball.x < leftPaddle.x) {
                 rightScore++;
                 
-                resetBall(ball+1);
+                resetBall(ball);
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
                 
-                resetBall(ball+1);
+                resetBall(ball);
                 ball.sX *= -1;
             }
         }
