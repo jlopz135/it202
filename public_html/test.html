@@ -348,12 +348,12 @@
             if(doublePoints){
                 return;
             }
-            if(leftScore > (rightScore*2) && leftScore > 1){
+            if(leftScore > (rightScore*2 + 1) && leftScore > 1){
                 rightScore++;
                 console.log("added extra right point");
                 doublePoints = true;
             }
-            if(rightScore > (leftScore*2) && rightScore > 1){
+            if(rightScore > (leftScore*2 + 1) && rightScore > 1){
                 leftScore++;
                 console.log("added extra left point");
                 doublePoints= true;
