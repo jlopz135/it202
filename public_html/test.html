@@ -101,7 +101,7 @@
         to the function and process the logic per ball
         */
         var ballsToSpawn = 1;
-        for (let i = 0; i < (leftScore + rightScore +1); i++) {
+        for (let i = 0; i < ballsToSpawn; i++) {
 
             setTimeout(function () {
                 let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
@@ -110,6 +110,15 @@
                 ball.sY = ballSpeed / 2;
                 randomDir(ball);
             }, 500 * i);
+            for(let j =0; j < (leftScore + rightScore +1); j++){
+                setTimeout(function () {
+                let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
+                balls.push(ball);
+                ball.sX = ballSpeed;
+                ball.sY = ballSpeed / 2;
+                randomDir(ball);
+            }, 500 * i);
+            }
 
         }
         function randomDir(ball) {
