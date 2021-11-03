@@ -75,11 +75,11 @@
         var rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
 
         //why not rotate the canvas 20degrees every 5 sec?
-        var deg = 0;
+        var deg = 180;
         window.setInterval(function () {
-            deg += 0;
+            deg += 180;
             canvas.style.transform = "rotate(" + deg + "deg)";
-        }, 60);
+        }, 5000);
         //end rotate
 
         // Keep track of the score
@@ -95,9 +95,9 @@
         we have it loop during the "game loop" then pass each ball
         to the function and process the logic per ball
         */
-        var ballsToSpawn = 1;
+        var ballsToSpawn = 10;
         for (let i = 0; i < ballsToSpawn; i++) {
-            ballsToSpawn++;
+            
             setTimeout(function () {
                 let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#000000');
                 balls.push(ball);
