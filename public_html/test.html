@@ -97,7 +97,7 @@
         we have it loop during the "game loop" then pass each ball
         to the function and process the logic per ball
         */
-        var ballsToSpawn = 10;
+        var ballsToSpawn = 1;
         for (let i = 0; i < ballsToSpawn; i++) {
             
             setTimeout(function () {
@@ -189,8 +189,6 @@
             context.textAlign = 'left';
             context.fillText('Player 1: W (up) and S (down)', 5, (canvas.height / 3) * 2);
             context.textAlign = 'right';
-            context.fillText('First to 10 Wins!', 3, (canvas.height / 2.5) * 2);
-            context.textAlign = 'center';
             context.fillText('Player 2: UP (up) and DOWN (down)', canvas.width - 5, (canvas.height / 3) * 2);
             // Start the game on a click
             canvas.addEventListener('click', startGame);
@@ -279,12 +277,12 @@
             // Score if the ball goes past a paddle
             if (ball.x < leftPaddle.x) {
                 rightScore++;
-                
+                ballsToSpawn++;
                 resetBall(ball);
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
-                
+                ballsToSpawn++;
                 resetBall(ball);
                 ball.sX *= -1;
             }
