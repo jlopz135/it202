@@ -231,7 +231,7 @@
         }
         function bounceBall(ball) {
             // Increase and reverse the X speed
-            var speed = false;
+            
             if (ball.sX > 0) {
                 ball.sX += 1;
                 // Add some "spin"
@@ -249,9 +249,7 @@
                     ball.sY += 1
                 }
             }
-            if(ball.sX > 4 || ball.sX < -4){
-                speed = true;
-            }
+            
             ball.sX *= -1;
         }
         function hitPaddle(ball) {
@@ -278,16 +276,12 @@
         function checkScore(ball) {
             // Score if the ball goes past a paddle
             if (ball.x < leftPaddle.x) {
-                if(speed){
-                    rightScore *= 2;
-                }
+                
                 rightScore++;
                 resetBall(ball);
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
-                if(speed){
-                    leftScore++;
-                }
+                
                 leftScore++;
                 resetBall(ball);
                 ball.sX *= -1;
