@@ -2,7 +2,6 @@
 
 <head>
     <style>
-        
         #center {
             width: 80%;
             margin-left: auto;
@@ -21,13 +20,16 @@
             background-color: crimson;
             border: 1px solid pink;
         }
+        canvas#canvas{
+            background-color: darkblue;
+        }
     </style>
 </head>
 
 <body>
     <h1>Crazy Pong</h1>
     <h3><a href="index.html">Back</a></h3>
-    <div class = "gradient" id="center">
+    <div class="gradient" id="center">
         <canvas id="canvas" width="550px" height="550px"></canvas>
     </div>
     <span id="endGame"></span>
@@ -74,8 +76,8 @@
         var doublePoints = false;
         var paddleWidth = 25;
         var paddleHeight = 100;
-        var leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
-        var rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
+        var leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, crimson);
+        var rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, name);
 
         //why not rotate the canvas 180degrees every 20 sec?
 
@@ -102,7 +104,7 @@
         */
         var ballsToSpawn = 1;
         for (let i = 0; i < ballsToSpawn; i++) {
-            
+
             setTimeout(function () {
                 let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
                 balls.push(ball);
@@ -181,6 +183,7 @@
         function menu() {
             erase();
             // Show the menu
+            var name = window.prompt("Enter Right Paddle Color: )");
             context.fillStyle = '#000000';
             context.font = '24px Arial';
             context.textAlign = 'center';
@@ -235,7 +238,7 @@
         }
         function bounceBall(ball) {
             // Increase and reverse the X speed
-            
+
             if (ball.sX > 0) {
                 ball.sX += 1;
                 // Add some "spin"
@@ -253,7 +256,7 @@
                     ball.sY += 1
                 }
             }
-            
+
             ball.sX *= -1;
         }
         function hitPaddle(ball) {
@@ -348,19 +351,19 @@
         }
         // score will always be at least the floor of half the winning side
         // evens the playing field a little, free points
-        function dubPts(){
-            if(doublePoints){
+        function dubPts() {
+            if (doublePoints) {
                 return;
             }
-            if(leftScore > (rightScore*2 + 1) && leftScore > 1){
+            if (leftScore > (rightScore * 2 + 1) && leftScore > 1) {
                 rightScore++;
                 console.log("added extra right point");
                 doublePoints = true;
             }
-            if(rightScore > (leftScore*2 + 1) && rightScore > 1){
+            if (rightScore > (leftScore * 2 + 1) && rightScore > 1) {
                 leftScore++;
                 console.log("added extra left point");
-                doublePoints= true;
+                doublePoints = true;
             }
         }
         // Show the menu to start the game
