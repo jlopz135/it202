@@ -73,6 +73,7 @@
         }
         // Create the paddles
         var doublePoints = false;
+        var count = 1;
         var paddleWidth = 25;
         var paddleHeight = 100;
         var leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
@@ -102,6 +103,7 @@
         to the function and process the logic per ball
         */
         var ballsToSpawn = 1;
+
         for (let i = 0; i < ballsToSpawn; i++) {
 
             setTimeout(function () {
@@ -111,10 +113,10 @@
                 ball.sY = ballSpeed / 2;
                 randomDir(ball);
             }, 500 * i);
-
-
-
         }
+
+
+
         function randomDir(ball) {
             // Randomize initial direction
             if (Math.random() > 0.5) {
@@ -224,6 +226,7 @@
 
         }
         function reload() {
+
             location.reload();
         }
         // Clear the canvas
@@ -280,36 +283,39 @@
                 ball.sY *= -1;
             }
         }
+        //every point generates 2 balls
         function checkScore(ball) {
             // Score if the ball goes past a paddle
             if (ball.x < leftPaddle.x) {
                 rightScore++;
-                for (let i = 0; i < 1; i++) {
+                doublePoints = false;
+                resetBall(ball);
+
+                for (let i = 0; i < ballsToSpawn; i++) {
 
                     setTimeout(function () {
-                        let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
+                        let ball = makeRect(canvas.width / 2, canvas.height / 2, ballLength, ballLength, ballSpeed, '#003FA3');
                         balls.push(ball);
                         ball.sX = ballSpeed;
                         ball.sY = ballSpeed / 2;
                         randomDir(ball);
                     }, 500 * i);
                 }
-                doublePoints = false;
-                resetBall(ball);
+
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
-                for (let i = 0; i < 1; i++) {
+                doublePoints = false;
+                for (let i = 0; i < ballsToSpawn; i++) {
 
                     setTimeout(function () {
-                        let ball = makeRect(0, 0, ballLength, ballLength, ballSpeed, '#003FA3');
+                        let ball = makeRect(canvas.width / 2, canvas.height / 2, ballLength, ballLength, ballSpeed, '#003FA3');
                         balls.push(ball);
                         ball.sX = ballSpeed;
                         ball.sY = ballSpeed / 2;
                         randomDir(ball);
                     }, 500 * i);
                 }
-                doublePoints = false;
                 resetBall(ball);
                 ball.sX *= -1;
             }
@@ -349,7 +355,6 @@
                 checkScore(ball);
                 ball.draw();
             }
-
             dubPts();
             // Draw the paddles and ball
             leftPaddle.draw();
