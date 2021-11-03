@@ -249,7 +249,7 @@
                     ball.sY += 1
                 }
             }
-            if(ball.sX > 4){
+            if(ball.sX > 4 || ball.sX < -4){
                 speed = true;
             }
             ball.sX *= -1;
@@ -280,17 +280,15 @@
             if (ball.x < leftPaddle.x) {
                 if(speed){
                     rightScore *= 2;
-                }else{
-                rightScore++;
                 }
+                rightScore++;
                 resetBall(ball);
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 if(speed){
-                    leftScore *= 2;
-                }else{
                     leftScore++;
                 }
+                leftScore++;
                 resetBall(ball);
                 ball.sX *= -1;
             }
