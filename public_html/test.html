@@ -2,13 +2,14 @@
 
 <head>
     <style>
+        
         #center {
             width: 80%;
             margin-left: auto;
             margin-right: auto;
             align-content: center;
             text-align: center;
-
+            background-color: chocolate;
             height: 99%;
             padding: 0px;
         }
@@ -17,6 +18,8 @@
         body {
             padding: 0px;
             margin: 0px;
+            background-color: crimson;
+            border: 1px solid pink;
         }
     </style>
 </head>
@@ -24,7 +27,7 @@
 <body>
     <h1>Crazy Pong</h1>
     <h3><a href="index.html">Back</a></h3>
-    <div id="center">
+    <div class = "gradient" id="center">
         <canvas id="canvas" width="550px" height="550px"></canvas>
     </div>
     <span id="endGame"></span>
@@ -74,7 +77,7 @@
         var leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
         var rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
 
-        //why not rotate the canvas 20degrees every 5 sec?
+        //why not rotate the canvas 180degrees every 20 sec?
 
         var deg = 180;
         window.setInterval(function () {
@@ -343,7 +346,8 @@
                 window.requestAnimationFrame(draw);
             }
         }
-
+        // score will always be at least the floor of half the winning side
+        // evens the playing field a little, free points
         function dubPts(){
             if(doublePoints){
                 return;
