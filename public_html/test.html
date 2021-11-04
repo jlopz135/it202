@@ -291,7 +291,6 @@
             if (ball.x < leftPaddle.x) {
                 rightScore++;
                 doublePoints = false;
-                resetBall(ball);
 
                 for (let i = 0; i < ballsToSpawn; i++) {
 
@@ -303,11 +302,12 @@
                         randomDir(ball);
                     }, 500 * i);
                 }
-
+                resetBall(ball);
                 ball.sX *= -1;
             } else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
                 doublePoints = false;
+                
                 for (let i = 0; i < ballsToSpawn; i++) {
 
                     setTimeout(function () {
