@@ -26,7 +26,7 @@
   - [x] (10/12/2021) User will be able to register a new account
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/register.php
       - Pull Requests
         - PR link #1 https://github.com/jlopz135/it202-009/pull/15
      - Screenshots
@@ -35,7 +35,7 @@
   - [x] (10/12/2021) User will be able to login to their account
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/login.php
       - Pull Requests
         - PR link #1 https://github.com/jlopz135/it202-009/pull/15
      - Screenshots
@@ -44,7 +44,7 @@
   - [x] (10/12/2021) User will be able to logout
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/logout.php (will direct to Login) 
       - Pull Requests
         - PR link #1 https://github.com/jlopz135/it202-009/pull/15
      - Screenshots
