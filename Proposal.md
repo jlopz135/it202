@@ -30,8 +30,8 @@
       - Pull Requests
         - PR link #1 https://github.com/jlopz135/it202-009/pull/15
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140668766-556e012f-4b36-43dd-b65f-a1c3bbb38a66.png)
+          - Screenshot #1: This is the registration page. Users will be able to submit emails, username, password.
   - [x] (10/12/2021) User will be able to login to their account
     -  List of Evidence of Feature Completion
       - Status: Completed
@@ -39,8 +39,8 @@
       - Pull Requests
         - PR link #1 https://github.com/jlopz135/it202-009/pull/15
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140668846-70f7bda6-d2c9-40cd-8c6f-9fa7fa95d4e8.png)
+          - Screenshot #1: User will be able to login to their account, given they have registered.
   - [x] (10/12/2021) User will be able to logout
     -  List of Evidence of Feature Completion
       - Status: Completed
@@ -48,8 +48,8 @@
       - Pull Requests
         - PR link #1 https://github.com/jlopz135/it202-009/pull/15
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140669279-db000111-5678-40fb-b449-6eae0715bdd9.png)
+          - Screenshot #1: User will be able to logout once logged in, redirecting them to login page when logged out.
   - [ ] (MM/DD/YYYY) Basic Security rules implemented
     -  List of Evidence of Feature Completion
       - Status: Completed
