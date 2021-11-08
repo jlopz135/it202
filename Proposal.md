@@ -50,15 +50,15 @@
      - Screenshots
        - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140669279-db000111-5678-40fb-b449-6eae0715bdd9.png)
           - Screenshot #1: User will be able to logout once logged in, redirecting them to login page when logged out.
-  - [ ] (MM/DD/YYYY) Basic Security rules implemented
+  - [x] (10/14/2021) Basic Security rules implemented
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/profile.php
       - Pull Requests
-        - PR link #1 
+        - PR link: https://github.com/jlopz135/it202-009/pull/18 
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140798965-af3bd6cf-ef03-4b63-bdb0-dd4be37acba6.png)
+          - Screenshot #1: Cannot access the profile page unless you are in a registered account.
   - [ ] (MM/DD/YYYY) Basic Roles implemented
     -  List of Evidence of Feature Completion
       - Status: Completed
@@ -77,15 +77,19 @@
      - Screenshots
        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] (MM/DD/YYYY) Any output messages/errors should be "user friendly"
+  - [x] (10/14/2021) Any output messages/errors should be "user friendly"
     -  List of Evidence of Feature Completion
       - Status: Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
-        - PR link #1 
+        - PR link: https://github.com/jlopz135/it202-009/pull/18 
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140801159-f7f871d6-8e4b-42b9-aa73-f7f9956c82e2.png)
+          - Screenshot #1: No username was provided, user was prompted to provide username
+       - Screenshot #2: ![image](https://user-images.githubusercontent.com/54092513/140801319-ecaf436a-0393-4ece-9246-87282841fe20.png)
+          - Screenshot #2: User is prompted to put in the proper length of a password
+       - Screenshot #3: ![image](https://user-images.githubusercontent.com/54092513/140801830-c12f4c6f-59a6-4b79-8e62-c3883ea53060.png)
+          - Screenshot #3: User fields have pre-reqs that must be satisfied
   - [ ] (MM/DD/YYYY) User will be able to see their profile
     -  List of Evidence of Feature Completion
       - Status: Completed
