@@ -13,20 +13,18 @@
 .alert-info {
     background-color: lightskyblue;
 }
-<<<<<<< HEAD
+
 nav li{display: inline;}
 nav li a{color: orange}
 input{border-radius: 50%;}
 body{
     background-color: navajowhite;
     color: black;
-=======
 nav li{display: inline; background-color: navajowhite;}
 nav li a{color: hotpink}
 input{border-radius: 50%;}
 body{
     background-color: navajowhite;
     color: rgb(153, 0, 153);
->>>>>>> d5d0c59f52e27e53cbce65880dee0ad25995351b
 
 }
