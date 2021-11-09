@@ -59,28 +59,30 @@
      - Screenshots
        - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140798965-af3bd6cf-ef03-4b63-bdb0-dd4be37acba6.png)
           - Screenshot #1: Cannot access the profile page unless you are in a registered account.
-  - [ ] (MM/DD/YYYY) Basic Roles implemented
+       - Screenshot #2: ![image](https://user-images.githubusercontent.com/54092513/140843562-3fc039d0-dc79-4ea0-8855-c23f178501fe.png)
+          - Screenshot #2: no access since role isn't given
+  - [ ] (10/28/2021) Basic Roles implemented
     -  List of Evidence of Feature Completion
-      - Status: Completed
+      - Status: NOT Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
-        - PR link #1 
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/29 
      - Screenshots
        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] (MM/DD/YYYY) Site should have basic styles/theme applied; everything should be styled
+  - [x] (11/08/2021) Site should have basic styles/theme applied; everything should be styled
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/styles.css
       - Pull Requests
-        - PR link #1 
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/60 
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140842252-38329335-7624-4130-bb8f-ae0edba344fc.png)
+          - Screenshot #1: all elements that should be styled, are.
   - [x] (10/14/2021) Any output messages/errors should be "user friendly"
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/helper.js
       - Pull Requests
         - PR link: https://github.com/jlopz135/it202-009/pull/18 
      - Screenshots
@@ -90,24 +92,26 @@
           - Screenshot #2: User is prompted to put in the proper length of a password
        - Screenshot #3: ![image](https://user-images.githubusercontent.com/54092513/140801830-c12f4c6f-59a6-4b79-8e62-c3883ea53060.png)
           - Screenshot #3: User fields have pre-reqs that must be satisfied
-  - [ ] (MM/DD/YYYY) User will be able to see their profile
+  - [x] (10/28/2001) User will be able to see their profile
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/admin/assign_roles.php
+                   - https://jl2237-prod.herokuapp.com/Project/admin/create_role.php
+                   - https://jl2237-prod.herokuapp.com/Project/admin/list_roles.php 
       - Pull Requests
-        - PR link #1 
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/29 
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [ ] (MM/DD/YYYY) User will be able to edit their profile
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140844390-7fc016d5-e857-496b-884e-35ea831fa98e.png)
+          - Screenshot #1: This is the users profile page given they're logged in.
+  - [x] (10/18/2021) User will be able to edit their profile
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/profile.php
       - Pull Requests
-        - PR link #1 
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/27
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140845092-23a7e8f6-4143-43c0-864f-2643e19a1690.png)
+          - Screenshot #1: If user wants to update password they are able to under profile page
 - Milestone 2
 - Milestone 3
 - Milestone 4
