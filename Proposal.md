@@ -63,7 +63,7 @@
           - Screenshot #2: no access since role isn't given
   - [x] (10/28/2021) Basic Roles implemented
     -  List of Evidence of Feature Completion
-      - Status: NOT Completed
+      - Status: Completed
       - Direct Link: http://localhost:3000/Project/admin/list_roles.php
                    - http://localhost:3000/Project/admin/create_role.php
                    - http://localhost:3000/Project/admin/assign_roles.php
