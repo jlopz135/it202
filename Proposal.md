@@ -61,15 +61,17 @@
           - Screenshot #1: Cannot access the profile page unless you are in a registered account.
        - Screenshot #2: ![image](https://user-images.githubusercontent.com/54092513/140843562-3fc039d0-dc79-4ea0-8855-c23f178501fe.png)
           - Screenshot #2: no access since role isn't given
-  - [ ] (10/28/2021) Basic Roles implemented
+  - [x] (10/28/2021) Basic Roles implemented
     -  List of Evidence of Feature Completion
       - Status: NOT Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: http://localhost:3000/Project/admin/list_roles.php
+                   - http://localhost:3000/Project/admin/create_role.php
+                   - http://localhost:3000/Project/admin/assign_roles.php
       - Pull Requests
         - PR link #1: https://github.com/jlopz135/it202-009/pull/29 
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140988673-772873c8-3575-4418-9987-f34c2e7c7f30.png)
+          - Screenshot #1: Listing roles present along witht the nav bar showing what other admin abilities are present.
   - [x] (11/08/2021) Site should have basic styles/theme applied; everything should be styled
     -  List of Evidence of Feature Completion
       - Status: Completed

@@ -1,3 +1,4 @@
+
 .alert-success {
     background-color: green
 }
@@ -15,10 +16,11 @@
 }
 
 nav li{display: inline;}
-nav li a{color: orange}
+nav li a{color: purple}
 input{border-radius: 50%;}
 body{
     background-color: navajowhite;
+
     color: black;
 nav li{display: inline; background-color: navajowhite;}
 nav li a{color: hotpink}
