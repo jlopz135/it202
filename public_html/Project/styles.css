@@ -14,11 +14,19 @@
 .alert-info {
     background-color: lightskyblue;
 }
+
 nav li{display: inline;}
 nav li a{color: purple}
 input{border-radius: 50%;}
 body{
     background-color: navajowhite;
-    color: red;
+
+    color: black;
+nav li{display: inline; background-color: navajowhite;}
+nav li a{color: hotpink}
+input{border-radius: 50%;}
+body{
+    background-color: navajowhite;
+    color: rgb(153, 0, 153);
 
 }
