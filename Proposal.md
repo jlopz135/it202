@@ -1,8 +1,8 @@
 # Project Name: Simple Shop
 ## Project Summary: This project will create a simple e-commerce site for users. Administrators or store owners will be able to manage inventory and users will be able to manage their cart and place orders.
 ## Github Link: https://github.com/jlopz135/it202-009/tree/prod
-## Project Board Link: 
-## Website Link: NEED TO UPDATE, JUST A PLACEHOLDER https://jl2237-prod.herokuapp.com/
+## Project Board Link: https://github.com/jlopz135/it202-009/projects/1
+## Website Link: https://jl2237-prod.herokuapp.com/Project/login.php
 ## Your Name: Juan Lopez
 
 <!--
