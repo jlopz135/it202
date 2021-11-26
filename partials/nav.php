@@ -30,12 +30,12 @@ require_once(__DIR__ . "/../lib/functions.php");
 <script src="helpers.js"></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <div class="container-fluid">
-        <a class="navbar-brand" href="home.php">Home</a>
+        <a class="navbar-brand" href="<?php echo get_url('shop.php'); ?>">Shop</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">             
                 <?php if (is_logged_in()) : ?>
 
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
@@ -53,6 +53,16 @@ require_once(__DIR__ . "/../lib/functions.php");
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/create_role.php'); ?>">Create</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/list_roles.php'); ?>">List</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rolesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu bg-warning" aria-labelledby="rolesDropdown">
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/add_items.php'); ?>">Add Products</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/edit_item.php'); ?>">Edit Products</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_items.php'); ?>">List Products</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
