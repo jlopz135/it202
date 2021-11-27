@@ -23,6 +23,97 @@
 ### Proposal Checklist and Evidence
 
 - Milestone 1
+  - [x] (10/12/2021) User will be able to register a new account
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/register.php
+      - Pull Requests
+        - PR link #1 https://github.com/jlopz135/it202-009/pull/15
+     - Screenshots
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140668766-556e012f-4b36-43dd-b65f-a1c3bbb38a66.png)
+          - Screenshot #1: This is the registration page. Users will be able to submit emails, username, password.
+  - [x] (10/12/2021) User will be able to login to their account
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/login.php
+      - Pull Requests
+        - PR link #1 https://github.com/jlopz135/it202-009/pull/15
+     - Screenshots
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140668846-70f7bda6-d2c9-40cd-8c6f-9fa7fa95d4e8.png)
+          - Screenshot #1: User will be able to login to their account, given they have registered.
+  - [x] (10/12/2021) User will be able to logout
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/logout.php (will direct to Login) 
+      - Pull Requests
+        - PR link #1 https://github.com/jlopz135/it202-009/pull/15
+     - Screenshots
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140669279-db000111-5678-40fb-b449-6eae0715bdd9.png)
+          - Screenshot #1: User will be able to logout once logged in, redirecting them to login page when logged out.
+  - [x] (10/14/2021) Basic Security rules implemented
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/profile.php
+      - Pull Requests
+        - PR link: https://github.com/jlopz135/it202-009/pull/18 
+     - Screenshots
+       - Screenshot #1 ![image](https://user-images.githubusercontent.com/54092513/140798965-af3bd6cf-ef03-4b63-bdb0-dd4be37acba6.png)
+          - Screenshot #1: Cannot access the profile page unless you are in a registered account.
+       - Screenshot #2: ![image](https://user-images.githubusercontent.com/54092513/140843562-3fc039d0-dc79-4ea0-8855-c23f178501fe.png)
+          - Screenshot #2: no access since role isn't given
+  - [x] (10/28/2021) Basic Roles implemented
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: http://localhost:3000/Project/admin/list_roles.php
+                   - http://localhost:3000/Project/admin/create_role.php
+                   - http://localhost:3000/Project/admin/assign_roles.php
+      - Pull Requests
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/29 
+     - Screenshots
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140988673-772873c8-3575-4418-9987-f34c2e7c7f30.png)
+          - Screenshot #1: Listing roles present along witht the nav bar showing what other admin abilities are present.
+  - [x] (11/08/2021) Site should have basic styles/theme applied; everything should be styled
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/styles.css
+      - Pull Requests
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/60 
+     - Screenshots
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140842252-38329335-7624-4130-bb8f-ae0edba344fc.png)
+          - Screenshot #1: all elements that should be styled, are.
+  - [x] (10/14/2021) Any output messages/errors should be "user friendly"
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/helper.js
+      - Pull Requests
+        - PR link: https://github.com/jlopz135/it202-009/pull/18 
+     - Screenshots
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140801159-f7f871d6-8e4b-42b9-aa73-f7f9956c82e2.png)
+          - Screenshot #1: No username was provided, user was prompted to provide username
+       - Screenshot #2: ![image](https://user-images.githubusercontent.com/54092513/140801319-ecaf436a-0393-4ece-9246-87282841fe20.png)
+          - Screenshot #2: User is prompted to put in the proper length of a password
+       - Screenshot #3: ![image](https://user-images.githubusercontent.com/54092513/140801830-c12f4c6f-59a6-4b79-8e62-c3883ea53060.png)
+          - Screenshot #3: User fields have pre-reqs that must be satisfied
+  - [x] (10/28/2001) User will be able to see their profile
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/admin/assign_roles.php
+                   - https://jl2237-prod.herokuapp.com/Project/admin/create_role.php
+                   - https://jl2237-prod.herokuapp.com/Project/admin/list_roles.php 
+      - Pull Requests
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/29 
+     - Screenshots
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140844390-7fc016d5-e857-496b-884e-35ea831fa98e.png)
+          - Screenshot #1: This is the users profile page given they're logged in.
+  - [x] (10/18/2021) User will be able to edit their profile
+    -  List of Evidence of Feature Completion
+      - Status: Completed
+      - Direct Link: https://jl2237-prod.herokuapp.com/Project/profile.php
+      - Pull Requests
+        - PR link #1: https://github.com/jlopz135/it202-009/pull/27
+     - Screenshots
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140845092-23a7e8f6-4143-43c0-864f-2643e19a1690.png)
+          - Screenshot #1: If user wants to update password they are able to under profile page
 - Milestone 2
   - [ ] (11/26/2021) User with an admin role or shop owner role will be able to add products to inventory
   -  List of Evidence of Feature Completion
