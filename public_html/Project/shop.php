@@ -21,22 +21,21 @@ try {
             <div class="col">
                 <div class="card bg-light">
                     <div class="card-header">
-                        Placeholder
+                        image
+                        <div class = "product-image">
+                            <img src="<?php echo get_url(se($item, "img", "pics/test.png", false));?>" class="img-fluid">
+                        </div>
                     </div>
-                    <?php if (se($item, "image", "", false)) : ?>
-                        <img src="<?php se($item, "image"); ?>" class="card-img-top" alt="...">
-                    <?php endif; ?>
 
                     <div class="card-body">
-                        <div class = "product-image">
-                            <img src="<?php echo get_url(se($item, "img", "pics/default.png", false));?>" class="img-fluid">
-                        </div>
                         <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>
                         <p class="card-text">Description: <?php se($item, "description"); ?></p>
                     </div>
                     <div class="card-footer">
                         Cost: <?php se($item, "unit_price"); ?>
                         <button onclick="purchase('<?php se($item, 'id'); ?>')" class="btn btn-primary">Purchase</button>
+                        <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>">Edit</a>
+
                     </div>
                 </div>
             </div>

@@ -31,7 +31,7 @@ if (isset($_POST["itemName"])) {
             <input class="btn btn-primary" type="submit" value="Search" />
         </div>
     </form>
-    <?php if (count($results) == 0) : ?>
+    <?php if ($results && count($results) == 0) : ?>
         <p>No results to show</p>
     <?php else : ?>
         <table class="table text-dark">

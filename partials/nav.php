@@ -61,8 +61,8 @@ require_once(__DIR__ . "/../lib/functions.php");
                         </a>
                         <ul class="dropdown-menu bg-warning" aria-labelledby="rolesDropdown">
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/add_items.php'); ?>">Add Products</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/edit_item.php'); ?>">Edit Products</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_items.php'); ?>">List Products</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/items.php'); ?>">Items List</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_items.php'); ?>">Product Search</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -83,8 +83,9 @@ require_once(__DIR__ . "/../lib/functions.php");
                         </a>
                         <ul class="dropdown-menu bg-warning" aria-labelledby="rolesDropdown">
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/add_items.php'); ?>">Add Products</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/edit_item.php'); ?>">Edit Products</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_items.php'); ?>">List Products</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/items.php'); ?>">Items List</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_items.php'); ?>">Product Search</a></li>
+                            
                         </ul>
                     </li>
                 <?php endif; ?>
