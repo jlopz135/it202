@@ -1,4 +1,3 @@
-
 .alert-success {
     background-color: green
 }
@@ -14,15 +13,18 @@
 .alert-info {
     background-color: lightskyblue;
 }
-
+div.product-image{
+    height: auto;
+    width: 100%;
+}
 nav li{display: inline;}
-nav li a{color: purple}
+nav li a{color: orange}
 input{border-radius: 50%;}
 body{
     background-color: navajowhite;
-
-    color: black;
-nav li{display: inline; background-color: navajowhite;}
+    color: black;}
+nav li{ 
+    display: inline; background-color: navajowhite;}
 nav li a{color: hotpink}
 input{border-radius: 50%;}
 body{
