@@ -28,6 +28,9 @@ try {
                     <?php endif; ?>
 
                     <div class="card-body">
+                        <div class = "product-image">
+                            <img src="<?php se($item, "img");?>">
+                        </div>
                         <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>
                         <p class="card-text">Description: <?php se($item, "description"); ?></p>
                     </div>
