@@ -1,1 +1,1 @@
-ALTER TABLE Products DELETE COLUMN img varchar(30) 
+ALTER TABLE Products DELETE COLUMN img varchar(60) 

@@ -29,7 +29,7 @@ try {
 
                     <div class="card-body">
                         <div class = "product-image">
-                            <img src="<?php se($item, "img");?>">
+                            <img src="<?php echo get_url(se($item, "img", "pics/default.png", false));?>" class="img-fluid">
                         </div>
                         <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>
                         <p class="card-text">Description: <?php se($item, "description"); ?></p>
