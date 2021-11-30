@@ -227,4 +227,41 @@ function get_account_balance()
     }
     return 0;
 }
-?>
+function filter()
+{
+
+    if (!isset($filter)) {
+        $filter = "cat"; //choosing to default to day
+    }
+    $db = getDB();
+    $query = "SELECT id, name, description, category, stock, unit_price, img FROM Products WHERE stock > 0 && visibility > 0";
+
+    if (isset($_POST['$filter'])) {
+        switch ($_POST['$filter']) {
+            case 'cat':
+                $query .= " ORDER BY category LIMIT 10";
+                break;
+            case 'high':
+                $query .= "ORDER BY unit_price DESC LIMIT 10";
+                break;
+            case 'low':
+                $query .= "ORDER BY unit_price DESC LIMIT 10";
+                break;
+        }
+        echo "selected size: " . htmlspecialchars($_POST['size']);
+    }
+    error_log($query);
+    $stmt = $db->prepare($query);
+    $results = [];
+    try {
+        $stmt->execute();
+        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($r) {
+            $results = $r;
+        }
+    } catch (PDOException $e) {
+        flash("<pre>" . var_export($e, true) . "</pre>");
+    }
+    return $results;
+
+}
