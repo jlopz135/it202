@@ -5,166 +5,126 @@ if (!is_logged_in()) {
     die(header("Location: login.php"));
 }
 ?>
-<?php 
-    $product_ids = array();
-    //session_destroy();
-
-    // check if add to cart button has been clicked
-    if (isset($_POST['add_to_cart'])) {
-        if (isset($_SESSION['shopping_cart'])) {
-            # keep track of shopping cart product
-            $count = count ($_SESSION['shopping_cart']);
-            $products_ids = array_column($_SESSION['shopping_cart'], 'id');
-            if (!in_array(filter_input(INPUT_GET, 'id'), $product_ids)) {
-                $_SESSION['shopping_cart'][$count] = array(
-                'id' => filter_input(INPUT_GET, 'id'),
-                'name' => filter_input(INPUT_POST, 'name'),
-                'description' => filter_input(INPUT_POST, 'description'),
-                'unit_price' => filter_input(INPUT_POST, 'unit_price'),
-                'quantity' => filter_input(INPUT_POST, 'quantity'),
-                );
+<?php
+if (!empty($_GET["action"])) {
+    switch ($_GET["action"]) {
+        case "add":
+            // --------------------------------------------------------------------------------------------------------------------------------------
+            $db = getDB();
+            $query = "SELECT * FROM Products WHERE stock > 0 && visibility > 0";
+            $item_id = $_GET['id'];
+            $user = get_user_id();
+            // update quantity here w item id and user id and if it is already in the users cart then update quantity
+            $stmt = $db->prepare($query);
+            $results = [];
+            try {
+                $stmt->execute();
+                $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($r) {
+                    $results = $r;
+                }
+            } catch (PDOException $e) {
+                flash("<pre>" . var_export($e, true) . "</pre>");
             }
-            else{
-                for ($i = 0 ; $i < count ($product_ids); $i++){
-                        if ($product_ids[$i]  == filter_input(INPUT_GET, 'id')) {
-                                $_SESSION['shopping_cart'][$i]['quantity'] += filter_input(INPUT_POST, 'quantity');
+            foreach ($results as $item) :
+                if (se($item, "id", "", false) == $item_id) {
+                    $cost = se($item, "unit_price", "", false);
+                    $query2 = "INSERT INTO cart (product_id, user_id, quantity, unit_cost) VALUES ('$item_id', '$user', '1','$cost')";
+                    $stmt2 = $db->prepare($query2);
+                    try {
+                        $stmt2->execute();
+                    } catch (PDOException $e) {
+                        flash("<pre>" . var_export($e, true) . "</pre>");
                     }
                 }
+            endforeach;
+            flash("Successfully Added To Cart");
+            break;
+            // --------------------------------------------------------------------------------------------------------------------------------------
+        case "remove":
+            $db = getDB();
+            $item_id = $_GET['id'];
+            $user = get_user_id();
+            $query = "DELETE FROM cart WHERE id = $item_id and user_id = $user";
+            $stmt = $db->prepare($query);
+            try {
+                $stmt->execute();
+            } catch (PDOException $e) {
+                flash("<pre>" . var_export($e, true) . "</pre>");
             }
-        }
-        else{
-            # if shopping cart doesn't exist, create first product with array key
-            $_SESSION['shopping_cart'][0] = array(
-                'id' => filter_input(INPUT_GET, 'id'),
-                'name' => filter_input(INPUT_POST, 'name'),
-                'description' => filter_input(INPUT_POST, 'description'),
-                'unit_price' => filter_input(INPUT_POST, 'unit_price'),
-                'quantity' => filter_input(INPUT_POST, 'quantity'),
-            );
-        }
-    }
-            # delete item from the cart
-            if (filter_input(INPUT_GET, 'action') == 'delete') {
-                # go through the products to check a product that matches the Get Id
-                    foreach ($_SESSION['shopping_cart'] as $key => $product) {
-                        if ($product['id'] == filter_input(INPUT_GET, 'id')) {
-                            # remove the item
-                            unset($_SESSION['shopping_cart'][$key]);
-                        }
-                    }
-                    // reset session array keys so they match with product ids number array
-                    $_SESSION['shopping_cart'] =array_values($_SESSION['shopping_cart']);
+            flash("Remove Successful");
+            break;
+            // $query = DELETE 
+        case "empty":
+            $db = getDB();
+            $userid = get_user_id();
+            $query = "DELETE FROM cart WHERE user_id = $userid";
+            $stmt = $db->prepare($query);
+            $results = [];
+            try {
+                $stmt->execute();
+            } catch (PDOException $e) {
+                flash("<pre>" . var_export($e, true) . "</pre>");
             }
+            flash("Carty Empty");
+            break;
+            //case "quanity": 
+
+    }   // $query = DELETE * from CART
+}
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    
-</head>
-</body>
-
-<!--- Checkout products section ends here --->
-<div class="container-fluid md-5">
-
-    <div class="row px-5 py-2">
-   
-    <br>
-    <hr>
-        <div class="col-md-7">
-            <h4>Your Cart</h4>
-            <?php
-                if (!empty ($_SESSION['shopping_cart'])):
-                    $total = 0 ;
-                    foreach ($_SESSION['shopping_cart'] as $key => $product):
-                   
-            ?>
-           
-            <div class="card px-3 mb-5">            
-                <div class="card-body">
-                    <div class = "product-image">
-                        <?php echo $product['id']; ?> 
-                    </div>
-                    <div class="row">
-
-                    <!--- Product image --->  
-                    <div class="col-md-4">
-                    </div>
-                        <div class="col-md-4">
-                            <h4><?php echo $product ['name'];?></h4>
-                            <h6><b>Description: </b><?php echo $product ['description'];?></h6>
-                            <p></p>
-                                <span class="price"> <b><?php echo $product ['unit_price'];?>/-</b></span>
-                            </h5>
-                        </div>
-                       
-                        <div class="col-md-4 py-5 px-5">
-                           <a href="checkout.php?action=delete&id=<?php echo $product ['id'];?>">
-                                <div class="btn btn-danger">Remove</div>
-                           </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-               <?php 
-                    $total = $total + ($product['quantity'] * $product['unit_price']);
-                    endforeach;
-               ?>
-    <?php endif;  ?>
-        </div>
-<!--- Checkout products section ends here ---> 
-        <!--- Total Price section ---> 
-        <?php 
-            if(!empty ($_SESSION['shopping_cart'])):
-                if(count($_SESSION['shopping_cart']) > 0);
-        ?>
-        
-<div class="col-md-5 py-5 px5">
-
-    <div class="card">
-    
-        <div class="card-body">
-            <b>Price Details</b>
-            <hr>
-            <div class="row">
-                <div class="col-md-5">
-                    <h5>Price (<?php echo $product['quantity']?> items)</h5>
-                </div>
-                <div class="col-md-5">
-                    <h5 class="float-right">
-                        <?php echo $total;?>
-                    </h5>
-                </div>
-                <!--- Price section ---> 
-                <!--- Total price section --->
-            <div class="row">
-                <div class="col-md-5 py-4">
-                    <h5><b>Total Price: </b></h5>
-                </div>
-                <div class="col-md-5 py-4">
-                    <h5 class="float-right"><b><?php echo $total;?></b></h5>
-                </div>
-            </div>
-                </div>
-            </div>
-           
-        </div>
-        
+<?php
+$db = getDB();
+$userId = get_user_id();
+$query = "SELECT * FROM Products JOIN cart on cart.product_id = Products.id and user_id = $userId";
+$stmt = $db->prepare($query);
+$results = [];
+try {
+    $stmt->execute();
+    $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($r) {
+        $results = $r;
+    }
+} catch (PDOException $e) {
+    flash("<pre>" . var_export($e, true) . "</pre>");
+}
+?>
+<div class="container-fluid">
+    <h1>CART</h1>
+    <div>
+        <a href="cart.php?action=empty"> Empty Cart
+            </br>
+        </a> <a href="shop.php"> Shop </a>
     </div>
-    <div class="btn btn-warning btn-block px-5">Continue Checkout</div>
-    </a>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        <?php foreach ($results as $item) : ?>
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a>
+                        <a href="product_details.php?id=<?php se($item, "id"); ?>"><?php se($item, "name"); ?></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="product-image">
+                            <img src=<?php se($item, 'img'); ?> height=auto; width=100%;>
+                        </div>
+                        <h5 class="card-title"> <?php se($item, "name"); ?></h5>
+                        <p class="card-text"><?php se($item, "description"); ?>...</p>
+                        <a href="cart.php?action=remove&id=<?php se($item, "id"); ?>"> REMOVE ITEM</a> <br>
+                        <a href="cart.php?action=quantity&id=<?php se($item, "id"); ?>"> QUANTITY </a> <!-- need to make this into input field type-->
+                    </div>
+                    <div class="card-footer">
+                        Cost: $<?php se($item, "unit_price"); ?>
+                        Quantity: <?php se($item, "quantity"); ?>
+                    </div>
 
-    <a href="shop.php" class="btn btn-success btn-block">Back To The Shop</a>
-</div>
-
-                <?php 
-                        endif;
-                ?>
-        <!--- Total Price section ends here --->
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
+    </form>
 </div>
-</body>
-</html>
+<?php
+require(__DIR__ . "/../../partials/footer.php");
+?>

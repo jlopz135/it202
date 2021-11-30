@@ -220,19 +220,8 @@ function update_data($table, $id,  $data, $ignore = ["id", "submit"])
         return false;
     }
 }
-function get_account_balance()
-{
-    if (is_logged_in() && isset($_SESSION["user"]["account"])) {
-        return (int)se($_SESSION["user"]["account"], "balance", 0, false);
-    }
-    return 0;
-}
 function filter()
 {
-
-    if (!isset($filter)) {
-        $filter = "cat"; //choosing to default to day
-    }
     $db = getDB();
     $query = "SELECT id, name, description, category, stock, unit_price, img FROM Products WHERE stock > 0 && visibility > 0";
 
@@ -263,5 +252,5 @@ function filter()
         flash("<pre>" . var_export($e, true) . "</pre>");
     }
     return $results;
-
 }
+?>

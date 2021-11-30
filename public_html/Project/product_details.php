@@ -29,14 +29,14 @@ try {
     <h1><?php se($item, "name") ?></h1>
     <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name");?></a>
     <div class = "product-image">
-        <img src="<?php se($item,"img");?>">  
+        <img src="<?php se($item,"img");?>" height=auto width=100%>  
     </div>
     <p class="mb-2 text-muted text-uppercase small"><?php se($item,"category")?></p>
     <p><span class="mr-1"><strong>Cost: $<?php se($item, "unit_price")?></strong></span></p>
     <p class="pt-1"><?php se($item,"description") ?></p>
     
     <div class="table-responsive">
-      <table class="table table-lg table-borderless mb-0">
+      <table class="table table-lg  mb-0">
         <tbody>
             <th class="pl-0 w-25" scope="row"><strong>Delivery</strong></th>
             <td>USA ONLY</td>
@@ -82,8 +82,8 @@ try {
       </table>
     </div>
     <button type="button" class="btn btn-primary btn-md ">Buy now</button>
-    <button type="button" class="btn btn-light btn-md"><i
-        class="shopping-cart"></i>Add to cart</button>
+    <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
+
   </div>
 </div>
 

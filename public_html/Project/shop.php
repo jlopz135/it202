@@ -35,9 +35,6 @@ $results = filter($_POST['Submit']);
             </form>
 </div>
     <div class="row row-cols-1 row-cols-md-5 g-4">
-        
-    
-        
         <?php foreach ($results as $item) : ?>
             <form id="add_to_cart" action="cart.php?" method="POST">
                 <div class="col">
@@ -48,7 +45,7 @@ $results = filter($_POST['Submit']);
                         </div>
                         <div class="card-body">
                             <div class="product-image">
-                                
+                                <img src = <?php se($item,'pics');?>>
                             </div>
                             <h5 class="card-title"> <?php se($item, "name"); ?></h5>
                             <p class="card-text"><?php se($item, "description"); ?>...</p>
@@ -57,15 +54,10 @@ $results = filter($_POST['Submit']);
                             Cost: $<?php se($item, "unit_price"); ?>
                             <!--<button onclick="purchase('<?php //se($item, 'id'); 
                                                             ?>')" class="btn btn-primary">Add To Cart</button> -->
-                            <button name=add_to_cart type="submit" class="btn btn-info">Add To Cart</button>
+                            <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
                         </div>
                     </div>
                 </div>
-                <input type="number" id="quantity" class="form-control mb-3" name="quantity" value="1">
-                <input type="hidden" id="id" name="id" value="<?php se($item, "id"); ?>">
-                <input type="hidden" id="name" name="name" value="<?php se($item, "name"); ?>">
-                <input type="hidden" id="description" name="description" value="<?php se($item, "description"); ?>">
-                <input type="hidden" id="unit_price" name="unit_price" value="<?php se($item, "unit_price"); ?>">
             <?php endforeach; ?>
     </div>
     </form>
