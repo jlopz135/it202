@@ -31,7 +31,7 @@ try {
     <div class = "product-image">
         <img src="<?php se($item,"img");?>" height=auto width=100%>  
     </div>
-    <p class="mb-2 text-muted text-uppercase small"><?php se($item,"category")?></p>
+    <p class="mb-2 text-muted text-uppercase small">Category: <?php se($item,"category")?></p>
     <p><span class="mr-1"><strong>Cost: $<?php se($item, "unit_price")?></strong></span></p>
     <p class="pt-1"><?php se($item,"description") ?></p>
     
@@ -39,7 +39,7 @@ try {
       <table class="table table-lg  mb-0">
         <tbody>
             <th class="pl-0 w-25" scope="row"><strong>Delivery</strong></th>
-            <td>USA ONLY</td>
+            <td>INTERNATIONAL</td>
           </tr>
         </tbody>
       </table>
@@ -49,31 +49,29 @@ try {
       <table class="table table-lg table-borderless">
         <tbody>
           <tr>
-            <td class="pl-0 pb-0 w-25">Quantity</td>
-            <td class="pb-0">Select Color</td>
+            <td>Quantity</td>
+            <td >Select Color</td>
           </tr>
           <tr>
             <td class="pl-0">
               <div class="def-number-input number-input mb-0">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                  class="minus"></button>
+
                 <input class="quantity" min="0" name="quantity" value="1" type="number">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                  class="plus"></button>
+                
               </div>
             </td>
             <td>
               <div class="mt-1">
                 <div class="form-check form-check-inline pl-0">
-                  <input type="radio" class="form-check-input" id="small" name="materialExampleRadios"
+                  <input type="radio" class="form-check-input" id="one" name="materialExampleRadios"
                     checked>
                   <label class="form-check-label small text-uppercase card-link-secondary"
-                    for="small">#</label>
+                    for="one">#</label>
                 </div>
                 <div class="form-check form-check-inline pl-0">
-                  <input type="radio" class="form-check-input" id="large" name="materialExampleRadios">
+                  <input type="radio" class="form-check-input" id="two" name="materialExampleRadios">
                   <label class="form-check-label small text-uppercase card-link-secondary"
-                    for="large">#</label>
+                    for="two">#</label>
                 </div>
               </div>
             </td>

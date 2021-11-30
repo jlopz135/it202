@@ -33,8 +33,8 @@ $results = filter($_POST['Submit']);
                 </select>
                 <input type="submit" name="Submit" value="Send">
             </form>
-</div>
-    <div class="row row-cols-1 row-cols-md-5 g-4">
+    </div>
+    <div class="row row-cols-2 g-4">
         <?php foreach ($results as $item) : ?>
             <form id="add_to_cart" action="cart.php?" method="POST">
                 <div class="col">
@@ -45,7 +45,7 @@ $results = filter($_POST['Submit']);
                         </div>
                         <div class="card-body">
                             <div class="product-image">
-                                <img src = <?php se($item,'pics');?>>
+                                <img src = <?php se($item,'img');?> height = 100%; width=100%; onerror="if (this.src != '<?php se($item,'img');?>') this.src = 'pics/test.png';">
                             </div>
                             <h5 class="card-title"> <?php se($item, "name"); ?></h5>
                             <p class="card-text"><?php se($item, "description"); ?>...</p>
@@ -56,7 +56,8 @@ $results = filter($_POST['Submit']);
                                                             ?>')" class="btn btn-primary">Add To Cart</button> -->
                             <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
                         </div>
-                    </div>
+                        
+                    </div><br>
                 </div>
             <?php endforeach; ?>
     </div>

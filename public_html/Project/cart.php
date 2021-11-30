@@ -29,7 +29,8 @@ if (!empty($_GET["action"])) {
             foreach ($results as $item) :
                 if (se($item, "id", "", false) == $item_id) {
                     $cost = se($item, "unit_price", "", false);
-                    $query2 = "INSERT INTO cart (product_id, user_id, quantity, unit_cost) VALUES ('$item_id', '$user', '1','$cost')";
+                    $query2 = "INSERT INTO cart (product_id, user_id, quantity, unit_cost) VALUES ('$item_id', '$user', '1','$cost') on duplicate key update quantity = quantity + 1";
+                    
                     $stmt2 = $db->prepare($query2);
                     try {
                         $stmt2->execute();
@@ -37,6 +38,10 @@ if (!empty($_GET["action"])) {
                         flash("<pre>" . var_export($e, true) . "</pre>");
                     }
                 }
+                // if(isset($_POST['add'])){
+                //     $ite = $_POST['quantity'];
+                //     $edit = mysqli_query($db, "UPDATE cart SET quantity='$ite' where id='$item_id'");
+                // }
             endforeach;
             flash("Successfully Added To Cart");
             break;
@@ -45,7 +50,7 @@ if (!empty($_GET["action"])) {
             $db = getDB();
             $item_id = $_GET['id'];
             $user = get_user_id();
-            $query = "DELETE FROM cart WHERE id = $item_id and user_id = $user";
+            $query = "UPDATE cart SET quantity = quantity - 1 where  quantity > 0"; // update quantity = quantity  1
             $stmt = $db->prepare($query);
             try {
                 $stmt->execute();
@@ -66,7 +71,7 @@ if (!empty($_GET["action"])) {
             } catch (PDOException $e) {
                 flash("<pre>" . var_export($e, true) . "</pre>");
             }
-            flash("Carty Empty");
+            flash("Cart is Now Empty");
             break;
             //case "quanity": 
 
@@ -117,6 +122,8 @@ try {
                     <div class="card-footer">
                         Cost: $<?php se($item, "unit_price"); ?>
                         Quantity: <?php se($item, "quantity"); ?>
+    
+
                     </div>
 
                 </div>
