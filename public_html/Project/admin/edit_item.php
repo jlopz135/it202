@@ -36,6 +36,7 @@ function mapColumn($col)
     global $columns;
     foreach ($columns as $c) {
         if ($c["Field"] === $col) {
+            
             return inputMap($c["Type"]);
         }
     }
@@ -49,7 +50,7 @@ function mapColumn($col)
             <?php /* Lazily ignoring fields via hardcoded array*/ ?>
             <?php if (!in_array($column, $ignore)) : ?>
                 <div class="mb-4">
-                    <label class="form-label" for="<?php se($column); ?>"><?php se($column); ?></label>
+                    <label class="form-label" for="<?php se($column); ?>"><?php se($column); ?>  </label>
                     <input class="form-control" id="<?php se($column); ?>" type="<?php echo mapColumn($column); ?>" value="<?php se($value); ?>" name="<?php se($column); ?>" />
                 </div>
             <?php endif; ?>
