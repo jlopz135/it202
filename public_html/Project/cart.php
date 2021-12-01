@@ -46,17 +46,22 @@ if (!empty($_GET["action"])) {
             flash("Successfully Added To Cart");
             break;
             // --------------------------------------------------------------------------------------------------------------------------------------
-        case "remove":
-            $db = getDB();
-            $item_id = $_GET['id'];
-            $user = get_user_id();
-            $query = "UPDATE cart SET quantity = quantity - 1 where  quantity > 0"; // update quantity = quantity  1
-            $stmt = $db->prepare($query);
+            case "remove":
+                $db = getDB();
+                $item_id = $_GET['id'];
+                $user = get_user_id();
+                $query = "UPDATE cart SET quantity = quantity - 1 WHERE id= :id and quantity > 0"; // update quantity = quantity  1
+                $stmt = $db->prepare($query);
             try {
-                $stmt->execute();
+                $stmt->execute([":id" => $item_id]);
+                $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($r) {
+                    $results = $r;
+                }
             } catch (PDOException $e) {
                 flash("<pre>" . var_export($e, true) . "</pre>");
             }
+            
             flash("Remove Successful");
             break;
             // $query = DELETE 
@@ -71,7 +76,7 @@ if (!empty($_GET["action"])) {
             } catch (PDOException $e) {
                 flash("<pre>" . var_export($e, true) . "</pre>");
             }
-            flash("Cart is Now Empty");
+            flash("Your Cart is Now Empty");
             break;
             //case "quanity": 
 
@@ -82,7 +87,7 @@ if (!empty($_GET["action"])) {
 <?php
 $db = getDB();
 $userId = get_user_id();
-$query = "SELECT * FROM Products JOIN cart on cart.product_id = Products.id and user_id = $userId";
+$query = "SELECT * FROM Products JOIN cart on cart.product_id = Products.id and user_id = $userId and quantity > 0";
 $stmt = $db->prepare($query);
 $results = [];
 try {
@@ -101,17 +106,21 @@ try {
         <a href="cart.php?action=empty"> Empty Cart
             </br>
         </a> <a href="shop.php"> Shop </a>
-    </div>
+    </div> 
     <div class="row row-cols-1 row-cols-md-5 g-4">
-        <?php foreach ($results as $item) : ?>
+        
+        <?php foreach ($results as $item)   :
+            ?>
+           
             <div class="col">
                 <div class="card bg-light">
                     <div class="card-header">
-                        <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a>
-                        <a href="product_details.php?id=<?php se($item, "id"); ?>"><?php se($item, "name"); ?></a>
+                    <a href="admin/edit_item.php?id=<?php se($item, "product_id"); ?>"> EDIT: <?php se($item, "name"); ?></a>
+                    <a href="product_details.php?id=<?php se($item, "product_id"); ?>"><?php se($item, "name"); ?></a>
                     </div>
                     <div class="card-body">
                         <div class="product-image">
+                        <?php echo se($item, "quantity");?>
                             <img src=<?php se($item, 'img'); ?> height=auto; width=100%;>
                         </div>
                         <h5 class="card-title"> <?php se($item, "name"); ?></h5>
