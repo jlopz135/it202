@@ -30,7 +30,7 @@ if (!empty($_GET["action"])) {
                 if (se($item, "id", "", false) == $item_id) {
                     $cost = se($item, "unit_price", "", false);
                     $query2 = "INSERT INTO cart (product_id, user_id, quantity, unit_cost) VALUES ('$item_id', '$user', '1','$cost') on duplicate key update quantity = quantity + 1";
-                    
+
                     $stmt2 = $db->prepare($query2);
                     try {
                         $stmt2->execute();
@@ -38,20 +38,20 @@ if (!empty($_GET["action"])) {
                         flash("<pre>" . var_export($e, true) . "</pre>");
                     }
                 }
-                // if(isset($_POST['add'])){
-                //     $ite = $_POST['quantity'];
-                //     $edit = mysqli_query($db, "UPDATE cart SET quantity='$ite' where id='$item_id'");
-                // }
+            // if(isset($_POST['add'])){
+            //     $ite = $_POST['quantity'];
+            //     $edit = mysqli_query($db, "UPDATE cart SET quantity='$ite' where id='$item_id'");
+            // }
             endforeach;
             flash("Successfully Added To Cart");
             break;
             // --------------------------------------------------------------------------------------------------------------------------------------
-            case "remove":
-                $db = getDB();
-                $item_id = $_GET['id'];
-                $user = get_user_id();
-                $query = "UPDATE cart SET quantity = quantity - 1 WHERE id= :id and quantity > 0"; // update quantity = quantity  1
-                $stmt = $db->prepare($query);
+        case "remove":
+            $db = getDB();
+            $item_id = $_GET['id'];
+            $user = get_user_id();
+            $query = "UPDATE cart SET quantity = quantity - 1 WHERE id= :id and quantity > 0"; // update quantity = quantity  1
+            $stmt = $db->prepare($query);
             try {
                 $stmt->execute([":id" => $item_id]);
                 $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@ if (!empty($_GET["action"])) {
             } catch (PDOException $e) {
                 flash("<pre>" . var_export($e, true) . "</pre>");
             }
-            
+
             flash("Remove Successful");
             break;
             // $query = DELETE 
@@ -106,22 +106,21 @@ try {
         <a href="cart.php?action=empty"> Empty Cart
             </br>
         </a> <a href="shop.php"> Shop </a>
-    </div> 
+    </div>
     <div class="row row-cols-1 row-cols-md-5 g-4">
-        
-        <?php foreach ($results as $item)   :
-            ?>
-           
+
+        <?php foreach ($results as $item) : ?>
+
             <div class="col">
                 <div class="card bg-light">
                     <div class="card-header">
-                    <a href="admin/edit_item.php?id=<?php se($item, "product_id"); ?>"> EDIT: <?php se($item, "name"); ?></a>
-                    <a href="product_details.php?id=<?php se($item, "product_id"); ?>"><?php se($item, "name"); ?></a>
+                        <a href="admin/edit_item.php?id=<?php se($item, "product_id"); ?>"> EDIT: <?php se($item, "name"); ?></a>
+                        <a href="product_details.php?id=<?php se($item, "product_id"); ?>"><?php se($item, "name"); ?></a>
                     </div>
                     <div class="card-body">
                         <div class="product-image">
-                        <?php echo se($item, "quantity");?>
-                            <img src=<?php se($item, 'img'); ?> height=auto; width=100%;>
+                            <?php echo se($item, "quantity"); ?>
+                            <img src=<?php se($item, 'img'); ?> height=100%; width=100%; onerror="if (this.src != '<?php se($item, 'img'); ?>') this.src = 'pics/test.png';">
                         </div>
                         <h5 class="card-title"> <?php se($item, "name"); ?></h5>
                         <p class="card-text"><?php se($item, "description"); ?>...</p>
@@ -131,15 +130,51 @@ try {
                     <div class="card-footer">
                         Cost: $<?php se($item, "unit_price"); ?>
                         Quantity: <?php se($item, "quantity"); ?>
-    
+
 
                     </div>
 
                 </div>
             </div>
         <?php endforeach; ?>
+
     </div>
     </form>
+    <br>
+    <div class="col-5" style="background-color:white; padding: .5em; text-align:center;">
+        <div>
+            <table>
+                <tr>
+                    <h2>BAG:</h2>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <?php $total= 0;?>
+                <?php foreach ($results as $item) : ?>
+
+                    <tr>
+                        <?php 
+                        $x = $item['unit_price'];
+                        $y = $item['quantity'];
+                        $subtotal = $x * $y;
+                        
+                        ?>
+                        <td><?php se($item, 'name'); ?></td>
+                        <td><?php se($item, 'quantity'); ?></td>
+                        <td><?php echo $subtotal; ?></td>
+                        <?php 
+                        $total = $total + $subtotal;
+                        ?>
+                    </tr>
+                    
+                <?php endforeach; ?>
+                <td></td><td></td>
+                <td style="text-align:center;">FINAL: <?php echo $total; ?> </td>
+
+            </table>
+        </div>
+    </div>
 </div>
 <?php
 require(__DIR__ . "/../../partials/footer.php");

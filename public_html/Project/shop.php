@@ -6,7 +6,7 @@ $db = getDB();
 //Sort and Filters
 $col = se($_GET, "col", "unit_price", false);
 //allowed list
-if (!in_array($col, ["unit_price", "stock", "name", "created"])) {
+if (!in_array($col, ["unit_price", "stock", "name", "category"])) {
     $col = "unit_price"; //default value, prevent sql injection
 }
 $order = se($_GET, "order", "asc", false);
@@ -16,7 +16,7 @@ if (!in_array($order, ["asc", "desc"])) {
 }
 $name = se($_GET, "name", "", false);
 //dynamic query
-$query = "SELECT id, name, description, unit_price, stock, img FROM Products WHERE 1=1 and stock > 0"; //1=1 shortcut to conditionally build AND clauses
+$query = "SELECT id, name, description, unit_price, stock, img FROM Products WHERE 1=1 and stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
 $params = []; //define default params, add keys as needed and pass to execute
 //apply name filter
 if (!empty($name)) {
@@ -72,10 +72,10 @@ try {
                 <div class="input-group-text">Sort</div>
                 <!-- make sure these match the in_array filter above-->
                 <select class="form-control" name="col" value="<?php se($col); ?>">
-                    <option value="cost">Cost</option>
+                    <option value="cost">Price</option>
                     <option value="stock">Stock</option>
                     <option value="name">Name</option>
-                    <option value="created">Created</option>
+                    <option value="category">Category</option>
                 </select>
                 <script>
                     //quick fix to ensure proper value is selected since
@@ -83,8 +83,8 @@ try {
                     document.forms[0].col.value = "<?php se($col); ?>";
                 </script>
                 <select class="form-control" name="order" value="<?php se($order); ?>">
-                    <option value="asc">Up</option>
-                    <option value="desc">Down</option>
+                    <option value="asc">ASC</option>
+                    <option value="desc">DESC</option>
                 </select>
                 <script>
                     //quick fix to ensure proper value is selected since

@@ -34,3 +34,18 @@ body{
     border:red;
     text-emphasis-color: red;
 }
+.total{
+    border: 3px solid black;
+    text-align: left;
+    padding: 8px;
+
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+table {
+    text-align: center;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
