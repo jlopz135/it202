@@ -29,7 +29,7 @@ try {
     <h1><?php se($item, "name") ?></h1>
     <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name");?></a>
     <div class = "product-image">
-        <img src="<?php se($item,"img");?>" height=auto width=100%>  
+      <img src = <?php se($item,'img');?> height = auto; width=100%; onerror="if (this.src != '<?php se($item,'img');?>') this.src = 'pics/test.png';">
     </div>
     <p class="mb-2 text-muted text-uppercase small">Category: <?php se($item,"category")?></p>
     <p><span class="mr-1"><strong>Cost: $<?php se($item, "unit_price")?></strong></span></p>
@@ -49,30 +49,22 @@ try {
       <table class="table table-lg table-borderless">
         <tbody>
           <tr>
-            <td>Quantity</td>
-            <td >Select Color</td>
+            <td></td>
+            <td>In Stock</td>
           </tr>
           <tr>
             <td class="pl-0">
               <div class="def-number-input number-input mb-0">
-
-                <input class="quantity" min="0" name="quantity" value="1" type="number">
-                
+                <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
               </div>
             </td>
             <td>
               <div class="mt-1">
                 <div class="form-check form-check-inline pl-0">
-                  <input type="radio" class="form-check-input" id="one" name="materialExampleRadios"
-                    checked>
-                  <label class="form-check-label small text-uppercase card-link-secondary"
-                    for="one">#</label>
+                  <?php echo se($item, "stock");?>  
+                
                 </div>
-                <div class="form-check form-check-inline pl-0">
-                  <input type="radio" class="form-check-input" id="two" name="materialExampleRadios">
-                  <label class="form-check-label small text-uppercase card-link-secondary"
-                    for="two">#</label>
-                </div>
+                
               </div>
             </td>
           </tr>
@@ -80,8 +72,6 @@ try {
       </table>
     </div>
     <button type="button" class="btn btn-primary btn-md ">Buy now</button>
-    <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
-
   </div>
 </div>
 
