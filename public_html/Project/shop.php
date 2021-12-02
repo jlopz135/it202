@@ -1,8 +1,43 @@
 
 <?php
 require(__DIR__ . "/../../partials/nav.php");
-
-$results = filter($_POST['Submit']);
+$results = [];
+$db = getDB();
+//Sort and Filters
+$col = se($_GET, "col", "unit_price", false);
+//allowed list
+if (!in_array($col, ["unit_price", "stock", "name", "category"])) {
+    $col = "unit_price"; //default value, prevent sql injection
+}
+$order = se($_GET, "order", "asc", false);
+//allowed list
+if (!in_array($order, ["asc", "desc"])) {
+    $order = "asc"; //default value, prevent sql injection
+}
+$name = se($_GET, "name", "", false);
+//dynamic query
+$query = "SELECT id, name, description, unit_price, stock, img FROM Products WHERE 1=1 and stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
+$params = []; //define default params, add keys as needed and pass to execute
+//apply name filter
+if (!empty($name)) {
+    $query .= " AND name like :name";
+    $params[":name"] = "%$name%";
+}
+//apply column and order sort
+if (!empty($col) && !empty($order)) {
+    $query .= " ORDER BY $col $order"; //be sure you trust these values, I validate via the in_array checks above
+}
+$stmt = $db->prepare($query); //dynamically generated query
+//$stmt = $db->prepare("SELECT id, name, description, cost, stock, image FROM BGD_Items WHERE stock > 0 LIMIT 50");
+try {
+    $stmt->execute($params); //dynamically populated params to bind
+    $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($r) {
+        $results = $r;
+    }
+} catch (PDOException $e) {
+    flash("<pre>" . var_export($e, true) . "</pre>");
+}
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
@@ -25,14 +60,45 @@ $results = filter($_POST['Submit']);
 <div class="container-fluid">
     <h1>Shop</h1>
     <div class="sort" style="float:right;">
-            <form id="s" method="post">
-                <select name="size">
-                    <option value="cat">Category</option>
-                    <option value="high">Price: High to Low</option>
-                    <option value="low">Price: Low to High</option>
+    <form class="row row-cols-auto g-3 align-items-center">
+        <div class="col">
+            <div class="input-group">
+                <div class="input-group-text">Name</div>
+                <input class="form-control" name="name" value="<?php se($name); ?>" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group">
+                <div class="input-group-text">Sort</div>
+                <!-- make sure these match the in_array filter above-->
+                <select class="form-control" name="col" value="<?php se($col); ?>">
+                    <option value="cost">Price</option>
+                    <option value="stock">Stock</option>
+                    <option value="name">Name</option>
+                    <option value="category">Category</option>
                 </select>
-                <input type="submit" name="Submit" value="Send">
-            </form>
+                <script>
+                    //quick fix to ensure proper value is selected since
+                    //value setting only works after the options are defined and php has the value set prior
+                    document.forms[0].col.value = "<?php se($col); ?>";
+                </script>
+                <select class="form-control" name="order" value="<?php se($order); ?>">
+                    <option value="asc">ASC</option>
+                    <option value="desc">DESC</option>
+                </select>
+                <script>
+                    //quick fix to ensure proper value is selected since
+                    //value setting only works after the options are defined and php has the value set prior
+                    document.forms[0].order.value = "<?php se($order); ?>";
+                </script>
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group">
+                <input type="submit" class="btn btn-primary" value="Apply" />
+            </div>
+        </div>
+    </form>
     </div>
     <div class="row row-cols-2 g-4">
         <?php foreach ($results as $item) : ?>
