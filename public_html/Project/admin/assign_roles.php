@@ -2,7 +2,7 @@
 //note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
 
-if (!has_role("Admin")) {
+if (!has_role("Admin") && !has_role("Owner")) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: $BASE_PATH" . "home.php"));
 }
@@ -80,7 +80,7 @@ if (isset($_POST["username"])) {
         <?php if (isset($username) && !empty($username)) : ?>
             <input type="hidden" name="username" value="<?php se($username, false); ?>" />
         <?php endif; ?>
-        <table class="table">
+        <table class="table text-dark">
             <thead>
                 <th>Users</th>
                 <th>Roles to Assign</th>
