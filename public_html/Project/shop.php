@@ -1,4 +1,3 @@
-
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 $results = [];
@@ -59,48 +58,50 @@ try {
 </script>
 <div class="container-fluid">
     <h1>Shop</h1>
+
     <div class="sort" style="float:right;">
-    <form class="row row-cols-auto g-3 align-items-center">
-        <div class="col">
-            <div class="input-group">
-                <div class="input-group-text">Name</div>
-                <input class="form-control" name="name" value="<?php se($name); ?>" />
+        <form class="row row-cols-auto g-3 align-items-center">
+            <div class="col">
+                <div class="input-group">
+                    <div class="input-group-text">Name</div>
+                    <input class="form-control" name="name" value="<?php se($name); ?>" />
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="input-group">
-                <div class="input-group-text">Sort</div>
-                <!-- make sure these match the in_array filter above-->
-                <select class="form-control" name="col" value="<?php se($col); ?>">
-                    <option value="cost">Price</option>
-                    <option value="stock">Stock</option>
-                    <option value="name">Name</option>
-                    <option value="category">Category</option>
-                </select>
-                <script>
-                    //quick fix to ensure proper value is selected since
-                    //value setting only works after the options are defined and php has the value set prior
-                    document.forms[0].col.value = "<?php se($col); ?>";
-                </script>
-                <select class="form-control" name="order" value="<?php se($order); ?>">
-                    <option value="asc">ASC</option>
-                    <option value="desc">DESC</option>
-                </select>
-                <script>
-                    //quick fix to ensure proper value is selected since
-                    //value setting only works after the options are defined and php has the value set prior
-                    document.forms[0].order.value = "<?php se($order); ?>";
-                </script>
+            <div class="col">
+                <div class="input-group">
+                    <div class="input-group-text">Sort</div>
+                    <!-- make sure these match the in_array filter above-->
+                    <select class="form-control" name="col" value="<?php se($col); ?>">
+                        <option value="cost">Price</option>
+                        <option value="stock">Stock</option>
+                        <option value="name">Name</option>
+                        <option value="category">Category</option>
+                    </select>
+                    <script>
+                        //quick fix to ensure proper value is selected since
+                        //value setting only works after the options are defined and php has the value set prior
+                        document.forms[0].col.value = "<?php se($col); ?>";
+                    </script>
+                    <select class="form-control" name="order" value="<?php se($order); ?>">
+                        <option value="asc">ASC</option>
+                        <option value="desc">DESC</option>
+                    </select>
+                    <script>
+                        //quick fix to ensure proper value is selected since
+                        //value setting only works after the options are defined and php has the value set prior
+                        document.forms[0].order.value = "<?php se($order); ?>";
+                    </script>
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="input-group">
-                <input type="submit" class="btn btn-primary" value="Apply" />
+
+            <div class="col">
+                <div class="input-group">
+                    <input type="submit" class="btn btn-primary" value="Apply" />
+                </div>
             </div>
-        </div>
-    </form>
-    </div>
-    <div class="row row-cols-2 g-4">
+        </form>
+    </div><br><br><br>
+    <div class="row row-cols-2 g-8">
         <?php foreach ($results as $item) : ?>
             <form id="add_to_cart" action="cart.php?" method="POST">
                 <div class="col">
@@ -111,7 +112,7 @@ try {
                         </div>
                         <div class="card-body">
                             <div class="product-image">
-                                <img src = <?php se($item,'img');?> height = 100%; width=100%; onerror="if (this.src != '<?php se($item,'img');?>') this.src = 'pics/test.png';">
+                                <img src=<?php se($item, 'img'); ?> height=100%; width=100%; onerror="if (this.src != '<?php se($item, 'img'); ?>') this.src = 'pics/test.png';">
                             </div>
                             <h5 class="card-title"> <?php se($item, "name"); ?></h5>
                             <p class="card-text"><?php se($item, "description"); ?>...</p>
@@ -122,7 +123,7 @@ try {
                                                             ?>')" class="btn btn-primary">Add To Cart</button> -->
                             <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
                         </div>
-                        
+
                     </div><br>
                 </div>
             <?php endforeach; ?>
