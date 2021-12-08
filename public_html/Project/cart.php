@@ -1,3 +1,6 @@
+<script>
+    
+</script>
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
 if (!is_logged_in()) {
@@ -115,16 +118,23 @@ try {
                     </div>
                     <div class="card-body">
                         <div class="product-image">
-                            <?php echo se($item, "quantity"); ?>
                             <img src=<?php se($item, 'img'); ?> height=100%; width=100%; onerror="if (this.src != '<?php se($item, 'img'); ?>') this.src = 'pics/test.png';">
                         </div>
                         <h5 class="card-title"> <?php se($item, "name"); ?></h5>
                         <p class="card-text"><?php se($item, "description"); ?></p>
-                        <a href="cart.php?action=remove&id=<?php se($item, "id"); ?>"> REMOVE ITEM</a> <br>
+                        <a href="cart.php?action=remove&id=<?php se($item, "id"); ?>"> REMOVE ITEM</a><br>
+                        <a href="cart.php?action=add&id=<?php se($item, "product_id"); ?>"> ADD TO CART </a>
                     </div>
                     <div class="card-footer">
                         Cost: $<?php se($item, "unit_price"); ?>
-                        Quantity: <?php se($item, "quantity"); ?>
+                        Quantity: <?php se($item, "quantity"); 
+                        ?>
+                        <div style="background-color:red;"><?php if($item['quantity'] > $item['stock']){
+                            echo "NOT ENOUGH INVENTORY FOR ", $item['name'];
+                        }?>
+                        
+
+                    </div>
 
 
                     </div>
@@ -150,6 +160,7 @@ try {
 
                     <tr>
                         <?php 
+                        
                         $x = $item['unit_price'];
                         $y = $item['quantity'];
                         $subtotal = $x * $y;
@@ -157,7 +168,7 @@ try {
                         ?>
                         <td><?php se($item, 'name'); ?></td>
                         <td><?php se($item, 'quantity'); ?></td>
-                        <td><?php echo $subtotal; ?></td>
+                        <td><?php echo $subtotal;?></td>
                         <?php 
                         $total = $total + $subtotal;
                         ?>
@@ -168,10 +179,11 @@ try {
                 <td style="text-align:center;">FINAL: <?php echo $total; ?> </td>
 
             </table>
+           
             <form action="checkout.php" method="post">
-                <?php ?>
                 <input type="submit" value="CHECKOUT" class="btn">
             </form>
+            
         </div>
     </div>
 </div>

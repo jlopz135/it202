@@ -101,7 +101,7 @@ try {
             </div>
         </form>
     </div><br><br><br>
-    <div class="row row-cols-2 g-8">
+    <div class="row row-cols-1 g-1">
         <?php foreach ($results as $item) : ?>
             <form id="add_to_cart" action="cart.php?" method="POST">
                 <div class="col">
