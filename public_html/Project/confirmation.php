@@ -30,13 +30,13 @@ try {
 $total = 0;
 foreach ($results as $item){
     $x = $item['unit_cost'];
-    $y = $item['desired_quantity'];
+    $y = $item['quantity'];
     $subtotal = $x * $y;
     $total = $total + $subtotal;
 }
 
 //INSERT INTO orders TABLE
-$query2 = "INSERT INTO orders (user_id, total_price, address, payment method) VALUES ($user_id, $total, $address, $pay)";
+$query2 = "INSERT INTO orders (user_id, total_price, address, payment_method) VALUES ('$user_id', '$total', '$address', '$payment')";
 $stmt2 = $db->prepare($query2);
 $res = [];
 try {
