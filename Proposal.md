@@ -1,15 +1,15 @@
 # Project Name: Simple Shop
 ## Project Summary: This project will create a simple e-commerce site for users. Administrators or store owners will be able to manage inventory and users will be able to manage their cart and place orders.
 ## Github Link: https://github.com/jlopz135/it202-009/tree/prod
-## Project Board Link: 
-## Website Link: NEED TO UPDATE, JUST A PLACEHOLDER https://jl2237-prod.herokuapp.com/
+## Project Board Link: https://github.com/jlopz135/it202-009/projects/1
+## Website Link: https://jl2237-prod.herokuapp.com/Project/login.php
 ## Your Name: Juan Lopez
 
 <!--
 ### Line item / Feature template (use this for each bullet point)
 #### Don't delete this
 
-- [ ] (mm/dd/yyyy of completion) Feature Title (from the proposal bullet point, if it's a sub-point indent it properly)
+- [ ] \(mm/dd/yyyy of completion) Feature Title (from the proposal bullet point, if it's a sub-point indent it properly)
   -  List of Evidence of Feature Completion
     - Status: Pending (Completed, Partially working, Incomplete, Pending)
     - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
@@ -61,15 +61,17 @@
           - Screenshot #1: Cannot access the profile page unless you are in a registered account.
        - Screenshot #2: ![image](https://user-images.githubusercontent.com/54092513/140843562-3fc039d0-dc79-4ea0-8855-c23f178501fe.png)
           - Screenshot #2: no access since role isn't given
-  - [ ] (10/28/2021) Basic Roles implemented
+  - [x] (10/28/2021) Basic Roles implemented
     -  List of Evidence of Feature Completion
-      - Status: NOT Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: http://localhost:3000/Project/admin/list_roles.php
+                   - http://localhost:3000/Project/admin/create_role.php
+                   - http://localhost:3000/Project/admin/assign_roles.php
       - Pull Requests
         - PR link #1: https://github.com/jlopz135/it202-009/pull/29 
      - Screenshots
-       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+       - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140988673-772873c8-3575-4418-9987-f34c2e7c7f30.png)
+          - Screenshot #1: Listing roles present along witht the nav bar showing what other admin abilities are present.
   - [x] (11/08/2021) Site should have basic styles/theme applied; everything should be styled
     -  List of Evidence of Feature Completion
       - Status: Completed
@@ -113,24 +115,24 @@
        - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140845092-23a7e8f6-4143-43c0-864f-2643e19a1690.png)
           - Screenshot #1: If user wants to update password they are able to under profile page
 - Milestone 2
-  - [ ] (mm/dd/yyyy) User with an admin role or shop owner role will be able to add products to inventory
+  - [ ] (11/26/2021) User with an admin role or shop owner role will be able to add products to inventory
   -  List of Evidence of Feature Completion
-    - Status: Pending (Completed, Partially working, Incomplete, Pending)
+    - Status: Complete
     - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
     - Pull Requests
       - PR link #1 (repeat as necessary)
     - Screenshots
-      - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-        - Screenshot #1 description explaining what you're trying to show
-  - [ ] (mm/dd/yyyy) Any user will be able to see products with visibility = true on the Shop page
+      - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/143623788-559451f1-78f4-45c4-a262-015ce44da7f1.png)
+        - Screenshot #1: Admin Role users can add items to inventory
+  - [ ] (11/26/2021) Any user will be able to see products with visibility = true on the Shop page
   -  List of Evidence of Feature Completion
-    - Status: Pending (Completed, Partially working, Incomplete, Pending)
+    - Status: Completed
     - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
     - Pull Requests
-      - PR link #1 (repeat as necessary)
+      - PR link #1: 
     - Screenshots
-      - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-        - Screenshot #1 description explaining what you're trying to show
+      - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/143623851-04111f1e-091b-4a7a-a04a-3b1641015775.png)
+        - Screenshot #1: Click shop button to see inventory, only one item in inventory
   - [ ] (mm/dd/yyyy) Admin/Shop owner will be able to see products with any visibility
   -  List of Evidence of Feature Completion
     - Status: Pending (Completed, Partially working, Incomplete, Pending)
@@ -140,15 +142,15 @@
     - Screenshots
       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
         - Screenshot #1 description explaining what you're trying to show
-  - [ ] (mm/dd/yyyy) Admin/Shop owner will be able to edit any product
+  - [ ] (10/26/2021) Admin/Shop owner will be able to edit any product
   -  List of Evidence of Feature Completion
-    - Status: Pending (Completed, Partially working, Incomplete, Pending)
+    - Status: Complete
     - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
     - Pull Requests
       - PR link #1 (repeat as necessary)
     - Screenshots
-      - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-        - Screenshot #1 description explaining what you're trying to show
+      - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/143623938-e233d653-5c1b-4591-9e7b-e2bcf91605ba.png)
+        - Screenshot #1: Admin role can edit items
   - [ ] (mm/dd/yyyy) User will be able to click an item from a list and view a full page with more info about the item (Product Details Page)
   -  List of Evidence of Feature Completion
     - Status: Pending (Completed, Partially working, Incomplete, Pending)
@@ -203,7 +205,7 @@
     - Screenshots
       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
         - Screenshot #1 description explaining what you're trying to show
-  - [ ] (mm/dd/yyyy) User will be able to remove a single item from their cart vai button click
+  - [ ] (mm/dd/yyyy) User will be able to remove a single item from their cart via button click
   -  List of Evidence of Feature Completion
     - Status: Pending (Completed, Partially working, Incomplete, Pending)
     - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))

@@ -3,7 +3,7 @@
 //note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
 
-if (!has_role("Admin")) {
+if (!has_role("Admin") && !has_role("Owner")) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: $BASE_PATH" . "home.php"));
 }
@@ -11,7 +11,7 @@ if (!has_role("Admin")) {
 $results = [];
 if (isset($_POST["itemName"])) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price from Products WHERE name like :name LIMIT 10");
+    $stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price, img from Products WHERE name like :name LIMIT 10");
     try {
         $stmt->execute([":name" => "%" . $_POST["itemName"] . "%"]);
         $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ if (isset($_POST["itemName"])) {
             <input class="btn btn-primary" type="submit" value="Search" />
         </div>
     </form>
-    <?php if (count($results) == 0) : ?>
+    <?php if ($results && count($results) == 0) : ?>
         <p>No results to show</p>
     <?php else : ?>
         <table class="table text-dark">

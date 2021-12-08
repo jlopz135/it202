@@ -2,7 +2,7 @@
 //note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
 
-if (!has_role("Admin")) {
+if (!has_role("Admin") && !has_role("Owner")) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: $BASE_PATH" . "home.php"));
 }
@@ -36,6 +36,7 @@ function mapColumn($col)
     global $columns;
     foreach ($columns as $c) {
         if ($c["Field"] === $col) {
+            
             return inputMap($c["Type"]);
         }
     }
@@ -49,7 +50,7 @@ function mapColumn($col)
             <?php /* Lazily ignoring fields via hardcoded array*/ ?>
             <?php if (!in_array($column, $ignore)) : ?>
                 <div class="mb-4">
-                    <label class="form-label" for="<?php se($column); ?>"><?php se($column); ?></label>
+                    <label class="form-label" for="<?php se($column); ?>"><?php se($column); ?>  </label>
                     <input class="form-control" id="<?php se($column); ?>" type="<?php echo mapColumn($column); ?>" value="<?php se($value); ?>" name="<?php se($column); ?>" />
                 </div>
             <?php endif; ?>

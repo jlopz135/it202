@@ -1,11 +1,35 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
-
 $results = [];
 $db = getDB();
-$stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price FROM Products WHERE stock > 0 && visibility > 0 LIMIT 50"); // admins can't see because visibility checker but this shows how to create shop page for users
+//Sort and Filters
+$col = se($_GET, "col", "unit_price", false);
+//allowed list
+if (!in_array($col, ["unit_price", "stock", "name", "category"])) {
+    $col = "unit_price"; //default value, prevent sql injection
+}
+$order = se($_GET, "order", "asc", false);
+//allowed list
+if (!in_array($order, ["asc", "desc"])) {
+    $order = "asc"; //default value, prevent sql injection
+}
+$name = se($_GET, "name", "", false);
+//dynamic query
+$query = "SELECT id, name, description, unit_price, stock, img FROM Products WHERE 1=1 and stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
+$params = []; //define default params, add keys as needed and pass to execute
+//apply name filter
+if (!empty($name)) {
+    $query .= " AND name like :name";
+    $params[":name"] = "%$name%";
+}
+//apply column and order sort
+if (!empty($col) && !empty($order)) {
+    $query .= " ORDER BY $col $order"; //be sure you trust these values, I validate via the in_array checks above
+}
+$stmt = $db->prepare($query); //dynamically generated query
+//$stmt = $db->prepare("SELECT id, name, description, cost, stock, image FROM BGD_Items WHERE stock > 0 LIMIT 50");
 try {
-    $stmt->execute();
+    $stmt->execute($params); //dynamically populated params to bind
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($r) {
         $results = $r;
@@ -14,31 +38,97 @@ try {
     flash("<pre>" . var_export($e, true) . "</pre>");
 }
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $document.ready(function() {
+        $('#add_to_cart').submit(function(e) {
+
+            $.ajax({
+                type: "POST",
+                url: "cart.php",
+                data: $("#add_to_cart").serialize(),
+                success: function(data) {
+                    flash("Successfully Added To Cart!")
+                }
+            })
+
+            e.preventDefault();
+        })
+    })
+</script>
 <div class="container-fluid">
     <h1>Shop</h1>
-    <div class="row row-cols-1 row-cols-md-5 g-4">
-        <?php foreach ($results as $item) : ?>
-            <div class="col">
-                <div class="card bg-light">
-                    <div class="card-header">
-                        Placeholder
-                    </div>
-                    <?php if (se($item, "image", "", false)) : ?>
-                        <img src="<?php se($item, "image"); ?>" class="card-img-top" alt="...">
-                    <?php endif; ?>
 
-                    <div class="card-body">
-                        <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>
-                        <p class="card-text">Description: <?php se($item, "description"); ?></p>
-                    </div>
-                    <div class="card-footer">
-                        Cost: <?php se($item, "unit_price"); ?>
-                        <button onclick="purchase('<?php se($item, 'id'); ?>')" class="btn btn-primary">Purchase</button>
-                    </div>
+    <div class="sort" style="float:right;">
+        <form class="row row-cols-auto g-3 align-items-center">
+            <div class="col">
+                <div class="input-group">
+                    <div class="input-group-text">Name</div>
+                    <input class="form-control" name="name" value="<?php se($name); ?>" />
                 </div>
             </div>
-        <?php endforeach; ?>
+            <div class="col">
+                <div class="input-group">
+                    <div class="input-group-text">Sort</div>
+                    <!-- make sure these match the in_array filter above-->
+                    <select class="form-control" name="col" value="<?php se($col); ?>">
+                        <option value="cost">Price</option>
+                        <option value="stock">Stock</option>
+                        <option value="name">Name</option>
+                        <option value="category">Category</option>
+                    </select>
+                    <script>
+                        //quick fix to ensure proper value is selected since
+                        //value setting only works after the options are defined and php has the value set prior
+                        document.forms[0].col.value = "<?php se($col); ?>";
+                    </script>
+                    <select class="form-control" name="order" value="<?php se($order); ?>">
+                        <option value="asc">ASC</option>
+                        <option value="desc">DESC</option>
+                    </select>
+                    <script>
+                        //quick fix to ensure proper value is selected since
+                        //value setting only works after the options are defined and php has the value set prior
+                        document.forms[0].order.value = "<?php se($order); ?>";
+                    </script>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="input-group">
+                    <input type="submit" class="btn btn-primary" value="Apply" />
+                </div>
+            </div>
+        </form>
+    </div><br><br><br>
+    <div class="row row-cols-2 g-8">
+        <?php foreach ($results as $item) : ?>
+            <form id="add_to_cart" action="cart.php?" method="POST">
+                <div class="col">
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a>
+                            <a href="product_details.php?id=<?php se($item, "id"); ?>"><?php se($item, "name"); ?></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="product-image">
+                                <img src=<?php se($item, 'img'); ?> height=100%; width=100%; onerror="if (this.src != '<?php se($item, 'img'); ?>') this.src = 'pics/test.png';">
+                            </div>
+                            <h5 class="card-title"> <?php se($item, "name"); ?></h5>
+                            <p class="card-text"><?php se($item, "description"); ?>...</p>
+                        </div>
+                        <div class="card-footer">
+                            Cost: $<?php se($item, "unit_price"); ?>
+                            <!--<button onclick="purchase('<?php //se($item, 'id'); 
+                                                            ?>')" class="btn btn-primary">Add To Cart</button> -->
+                            <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
+                        </div>
+
+                    </div><br>
+                </div>
+            <?php endforeach; ?>
     </div>
+    </form>
 </div>
 <?php
 require(__DIR__ . "/../../partials/footer.php");

@@ -220,11 +220,39 @@ function update_data($table, $id,  $data, $ignore = ["id", "submit"])
         return false;
     }
 }
-function get_account_balance()
+function filter()
 {
-    if (is_logged_in() && isset($_SESSION["user"]["account"])) {
-        return (int)se($_SESSION["user"]["account"], "balance", 0, false);
+    $db = getDB();
+    $query = "SELECT id, name, description, category, stock, unit_price, img FROM Products WHERE stock > 0 && visibility > 0";
+
+    if (isset($_POST['$filter'])) {
+        switch ($_POST['$filter']) {
+            case 'cat':
+                $query .= " ORDER BY category LIMIT 10";
+                break;
+            case 'high':
+                $query .= "ORDER BY unit_price DESC LIMIT 10";
+                break;
+            case 'low':
+                $query .= "ORDER BY unit_price DESC LIMIT 10";
+                break;
+        }
+        echo "selected size: " . htmlspecialchars($_POST['size']);
     }
-    return 0;
+    error_log($query);
+    $stmt = $db->prepare($query);
+    $results = [];
+    try {
+        $stmt->execute();
+        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($r) {
+            $results = $r;
+        }
+    } catch (PDOException $e) {
+        flash("<pre>" . var_export($e, true) . "</pre>");
+    }
+    return $results;
 }
+
 ?>
+
