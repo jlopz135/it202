@@ -49,9 +49,7 @@ try {
     flash("<pre>" . var_export($e, true) . "</pre>");
 }
 
-flash("Successfully Added To orders");
-
-
+$query3 = "";
 
 flash("THANK YOU FOR YOUR PURCHASE!");
 

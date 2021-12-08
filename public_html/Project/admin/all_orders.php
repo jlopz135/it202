@@ -29,15 +29,23 @@ try {
                     <?php foreach ($record as $column => $value) : ?>
                         <th><?php se($column); ?></th>
                     <?php endforeach; ?>
+                    <th>List Items</th>
+                    
                 </thead>
             <?php endif; ?>
             <tr>
                 <?php foreach ($record as $column => $value) : ?>
                     <td><?php se($value, null, "N/A"); ?></td>
                 <?php endforeach; ?>
+
+                <td>
+                    <a href="#">List Items</a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>
+
+   
 <?php endif; ?>
 <style>
     td, th{
@@ -45,4 +53,5 @@ try {
         padding: 3px 10px;
         justify-items: center;
     }
+
 </style>
