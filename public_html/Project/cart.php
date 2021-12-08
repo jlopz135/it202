@@ -123,9 +123,8 @@ try {
                             <img src=<?php se($item, 'img'); ?> height=100%; width=100%; onerror="if (this.src != '<?php se($item, 'img'); ?>') this.src = 'pics/test.png';">
                         </div>
                         <h5 class="card-title"> <?php se($item, "name"); ?></h5>
-                        <p class="card-text"><?php se($item, "description"); ?>...</p>
+                        <p class="card-text"><?php se($item, "description"); ?></p>
                         <a href="cart.php?action=remove&id=<?php se($item, "id"); ?>"> REMOVE ITEM</a> <br>
-                        <a href="cart.php?action=quantity&id=<?php se($item, "id"); ?>"> QUANTITY </a> <!-- need to make this into input field type-->
                     </div>
                     <div class="card-footer">
                         Cost: $<?php se($item, "unit_price"); ?>
@@ -173,6 +172,9 @@ try {
                 <td style="text-align:center;">FINAL: <?php echo $total; ?> </td>
 
             </table>
+            <form action="checkout.php" method="post">
+                <input type="submit" value="CHECKOUT" class="btn">
+            </form>
         </div>
     </div>
 </div>
