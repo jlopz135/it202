@@ -10,7 +10,7 @@ if (!has_role("Admin") && !has_role("Owner")) {
 
 $db = getDB();
 //generally try to avoid SELECT *, but this is about being dynamic so I'm using it this time
-$query = "SELECT id, name, description, stock, unit_price, visibility FROM Products LIMIT 20"; //TODO change table name and desired columns
+$query = "SELECT id, name, description, stock, unit_price, visibility, img FROM Products LIMIT 20"; //TODO change table name and desired columns
 $stmt = $db->prepare($query);
 $results = [];
 try {
@@ -44,6 +44,7 @@ try {
                     <a href="edit_item.php?id=<?php se($record, "id"); ?>">Edit</a>
                 </td>
                 <td>
+                    
                     <img src="<?php echo get_url(se($record, "img", "pics/test.png", false));?>" height=auto width=100>
                 </td>
             </tr>
