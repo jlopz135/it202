@@ -132,11 +132,11 @@ require_once(__DIR__ . "/../../partials/nav.php");
                         <div class="col-50">
                             <h3>Billing Address</h3>
                             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                            <input type="text" id="fullname" name="fullname" placeholder="John M. Doe">
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
                             <input type="text" id="email" name="email" placeholder="john@example.com">
                             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                            <input type="text" id="address" name="address" placeholder="542 W. 15th Street">
                             <label for="city"><i class="fa fa-institution"></i> City</label>
                             <input type="text" id="city" name="city" placeholder="New York">
 
@@ -161,16 +161,20 @@ require_once(__DIR__ . "/../../partials/nav.php");
                                 <i class="fa fa-cc-mastercard" style="color:red;"></i>
                                 <i class="fa fa-cc-discover" style="color:orange;"></i>
                             </div>
-                            <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="cardname" placeholder="John Doe">
                             <label for="pay">Form of Payment</label>
-                            <input type="dropdown" id="pay" name="pay" placeholder="Choose Method">
-                            <div class="row">
-                                <div class="col-50">
+                            <select class = "form-control" name="pay" id="pay">
+                                <option value="visa">VISA</option>
+                                <option value="amex">AMEX</option>
+                                <option value="mast">MASTERCARD</option>
+                                <option value="cash">CASH</option>
+                                
+                            </select>
+                                <div class="row">
+                                    <div class="col-50">
+                                    </div>
+                                    <div class="col-50">
+                                    </div>
                                 </div>
-                                <div class="col-50">
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -183,7 +187,7 @@ require_once(__DIR__ . "/../../partials/nav.php");
         </div>
         <div class="col-25">
             <div class="container" style="padding: 2px;">
-                <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>QUANTITY FROM TABLE</b></span></h4>
+                <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i></span></h4>
                 <?php
                 $total = 0;
                 foreach ($results as $item) :
