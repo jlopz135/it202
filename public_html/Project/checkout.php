@@ -126,8 +126,7 @@ require_once(__DIR__ . "/../../partials/nav.php");
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="confirmation.php">
-
+                <form action="confirmation.php" method="post">
                     <div class="row">
                         <div class="col-50">
                             <h3>Billing Address</h3>
@@ -189,7 +188,9 @@ require_once(__DIR__ . "/../../partials/nav.php");
             <div class="container" style="padding: 2px;">
                 <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i></span></h4>
                 <?php
+                
                 $total = 0;
+                
                 foreach ($results as $item) :
                     $x = $item['unit_price'];
                     $y = $item['quantity'];

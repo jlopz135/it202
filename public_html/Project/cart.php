@@ -38,10 +38,6 @@ if (!empty($_GET["action"])) {
                         flash("<pre>" . var_export($e, true) . "</pre>");
                     }
                 }
-            // if(isset($_POST['add'])){
-            //     $ite = $_POST['quantity'];
-            //     $edit = mysqli_query($db, "UPDATE cart SET quantity='$ite' where id='$item_id'");
-            // }
             endforeach;
             flash("Successfully Added To Cart");
             break;
@@ -173,6 +169,7 @@ try {
 
             </table>
             <form action="checkout.php" method="post">
+                <?php ?>
                 <input type="submit" value="CHECKOUT" class="btn">
             </form>
         </div>
