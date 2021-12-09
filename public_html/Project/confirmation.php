@@ -140,7 +140,8 @@
     }
 
     ?>
-<a href="orderDetails.php?id=<?php echo $lastID?>">CLICK HERE FOR ORDER DETAILS</a>
+<a href="orderDetails.php?id=<?php 
+    echo $lastID?>">CLICK HERE FOR ORDER DETAILS</a>
 
 
 <?php  ?>
