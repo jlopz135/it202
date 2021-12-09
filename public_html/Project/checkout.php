@@ -180,6 +180,7 @@ require_once(__DIR__ . "/../../partials/nav.php");
                     <label>
                         <input type="checkbox" checked="checked" name="freeShipping"> FREE Regular Shipping (7-10 Days)
                     </label>
+                    <a></a> 
                     <input type="submit" value="Place Order" class="btn">
                 </form>
             </div>

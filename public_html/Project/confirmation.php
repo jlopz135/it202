@@ -77,6 +77,7 @@
         $query2 = "INSERT INTO orders (`user_id`, `total_price`, `address`, `payment_method`) VALUES ('$user_id', '$total2', '$address', '$payment')";
         $stmt2 = $db->prepare($query2);
         $res = [];
+        $lastID;
         try {
             $stmt2->execute();
             $lastID = $db->lastinsertid(); // Gets Last Order ID
@@ -87,7 +88,7 @@
         // copy cart details into the orderItems tables with the ORDER ID
         foreach ($results as $item) {
             $prodID = (int) se($item, "product_id", "", false);
-            $cartQuant = (int) se($item, "desired_quantity", "", false);
+            $cartQuant = (int) se($item, "quantity", "", false);
             $price = (int) se($item, "unit_cost", "", false);
             $query4 = "INSERT INTO orderItems (order_id, product_id, quantity, unit_cost) VALUES ('$lastID','$prodID','$cartQuant','$price')";
 
@@ -99,7 +100,7 @@
             }
         }
 
-        $query5 = "SELECT * FROM orderItems WHERE order_id = $last_id";
+        $query5 = "SELECT * FROM orderItems WHERE order_id = $lastID";
         $stmt5 = $db->prepare($query5);
         $orderItems = [];
         try {
@@ -134,12 +135,15 @@
         } catch (PDOException $e) {
             flash("<pre>" . var_export($e, true) . "</pre>");
         }
-
+        flash($lastID);
         flash("THANK YOU FOR YOUR PURCHASE!");
     }
 
     ?>
+<a href="orderDetails.php?id=<?php echo $lastID?>">CLICK HERE FOR ORDER DETAILS</a>
 
+
+<?php  ?>
 </body>
 <?php require(__DIR__ . "/../../partials/footer.php"); ?>
 
