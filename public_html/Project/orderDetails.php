@@ -1,6 +1,6 @@
 <?php
+// order details can be reached from confirmation page
 require(__DIR__ . "/../../partials/nav.php");
-
 
 $userId = get_user_id();
 $db = getDB();
