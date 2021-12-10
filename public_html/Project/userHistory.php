@@ -1,16 +1,14 @@
-
 <?php
-//note we need to go up 1 more directory
-require(__DIR__ . "/../../../partials/nav.php");
-if (!has_role("Admin") && !has_role("Owner")) {
+require(__DIR__ . "/../../partials/nav.php");
+//user can see their purhcase history
+if (!is_logged_in()) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: $BASE_PATH" . "home.php"));
 }
 
-
+$userId = get_user_id();
 $db = getDB();
-//generally try to avoid SELECT *, but this is about being dynamic so I'm using it this time
-$query = "SELECT id, name, description, stock, unit_price, visibility, img FROM Products LIMIT 20"; //TODO change table name and desired columns
+$query = "SELECT * FROM orders WHERE user_id = $userId";
 $stmt = $db->prepare($query);
 $results = [];
 try {
@@ -20,7 +18,7 @@ try {
     echo "<pre>" . var_export($e, true) . "</pre>";
 }
 ?>
-<h3>All Items</h3>
+<h3>All Orders</h3>
 <?php if ($results && count($results) == 0) : ?>
     <p>No results to show</p>
 <?php else : ?>
@@ -31,8 +29,8 @@ try {
                     <?php foreach ($record as $column => $value) : ?>
                         <th><?php se($column); ?></th>
                     <?php endforeach; ?>
-                    <th>Actions</th>
-                    <th>Image</th>
+                    <th>List Items</th>
+                    
                 </thead>
             <?php endif; ?>
             <tr>
@@ -41,11 +39,8 @@ try {
                 <?php endforeach; ?>
 
                 <td>
-                    <a href="edit_item.php?id=<?php se($record, "id"); ?>">Edit</a>
-                </td>
-                <td>
-                    
-                    <img src="<?php echo get_url(se($record, "img", "pics/test.png", false));?>" height=auto width=100>
+                    <a href="orderDetails.php?id=<?php se($record, "id"); //see purchase details
+                    ?>">List Items</a>
                 </td>
             </tr>
         <?php endforeach; ?>
