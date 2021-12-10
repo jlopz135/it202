@@ -9,7 +9,7 @@ $stmt = $db->prepare($query);
 $orders = [];
 try {
     $stmt->execute();
-    $last_id = $_GET['id'];
+    $last_id = $_GET['id']; //gets last order ID from table
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($r) {
         $orders = $r;
@@ -47,7 +47,8 @@ flash("THANK YOU FOR YOUR ORDER");
             <th style="font-size: 20px; color: red;">Product Price</th></b>
         </tr>
         
-        <?php foreach ($orderItems as $item): ?>           
+        <?php foreach ($orderItems as $item): //this is the output of the order details from that specific purchase when clicked on confirmation page
+             ?>           
            <tr>
             <th><?php se($item,"name")?></th>
             <th><?php se($item,"quantity")?></th>

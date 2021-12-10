@@ -181,6 +181,7 @@ try {
             </table>
            
             <form action="checkout.php" method="post">
+                <!-- Added checkout button -->
                 <input type="submit" value="CHECKOUT" class="btn">
             </form>
             

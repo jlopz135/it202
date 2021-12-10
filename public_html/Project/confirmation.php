@@ -2,6 +2,7 @@
 
 <body>
     <?php
+    //this is the order confirmation page. to see order details button must be clicked. 
     require_once(__DIR__ . "/../../partials/nav.php");
     if (!is_logged_in()) {
         flash("You must be logged in to see this!");
@@ -33,15 +34,15 @@
             $status = false;
             break;
         }
-        // check cart desired_quanity < stock
+        // check cart quanity < stock and redirect if stock isn't enough
         if (se($p, "quantity", "", false) > se($p, "stock", "", false)) {
             $prodName = (string) se($p, "name", "", false);
             $quantity = (string) se($p, "quantity", "", false);
             $quantity2 = (string) se($p, "stock", "", false);
             $errMSG = "You are trying to order '" . $prodName . "' but we currently do not have enough stock for the desired quantity of " . $quantity . " We only have " . $quantity2;
             flash("$errMSG");
-            flash("Please go back to your cart and try again");
-
+            flash("Please go back to your cart and try again"); 
+            //redirects to cart
             die(header("Location: cart.php"));
             $status = false;
         }
@@ -116,22 +117,21 @@
             $prodID3 = (int) se($oitem, "product_id", "", false);
             $cartQuant3 = (int) se($oitem, "quantity", "", false);
             $query5 = "UPDATE Products SET stock = stock-$cartQuant3 WHERE id = $prodID3 && visibility > 0";
+            //updates the stock
             $stmt5 = $db->prepare($query5);
             try {
                 $stmt5->execute();
-                flash("stock updated");
             } catch (PDOException $e) {
                 flash("Stock not updated");
             }
         }
     
-        // clear user's cart 
+        // clear user's cart after successful checkout
         $userid = get_user_id();
         $query6 = "DELETE FROM cart WHERE user_id = $userid";
         $stmt6 = $db->prepare($query6);
         try {
             $stmt6->execute();
-            flash("Cart Cleared");
         } catch (PDOException $e) {
             flash("<pre>" . var_export($e, true) . "</pre>");
         }
@@ -140,8 +140,11 @@
     }
 
     ?>
-<a href="orderDetails.php?id=<?php 
-    echo $lastID?>">CLICK HERE FOR ORDER DETAILS</a>
+<a href="orderDetails.php?id=<?php //will redirect to order details when clicked
+    echo $lastID?>">CLICK HERE FOR ORDER DETAILS</a> 
+
+
+<br> <br> <a href="shop.php">BACK TO SHOP PAGE</a>
 
 
 <?php  ?>
