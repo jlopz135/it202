@@ -47,7 +47,7 @@ flash("THANK YOU FOR YOUR ORDER");
             <th style="font-size: 20px; color: red;">Product Price</th></b>
         </tr>
         
-        <?php foreach ($orderItems as $item): //outputs the order details from that specific purchase 
+        <?php foreach ($orderItems as $item): //this is the output of the order details from that specific purchase when clicked on confirmation page
              ?>           
            <tr>
             <th><?php se($item,"name")?></th>
