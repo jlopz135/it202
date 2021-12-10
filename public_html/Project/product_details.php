@@ -71,7 +71,6 @@ try {
         </tbody>
       </table>
     </div>
-    <button type="button" class="btn btn-primary btn-md ">Buy now</button>
   </div>
 </div>
 

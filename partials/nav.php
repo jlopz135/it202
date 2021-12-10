@@ -53,6 +53,7 @@ require_once(__DIR__ . "/../lib/functions.php");
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/create_role.php'); ?>">Create</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/list_roles.php'); ?>">List</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/all_orders.php'); ?>">All Orders</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -75,6 +76,7 @@ require_once(__DIR__ . "/../lib/functions.php");
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/create_role.php'); ?>">Create</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/list_roles.php'); ?>">List</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/all_orders.php'); ?>">All Orders</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -91,6 +93,8 @@ require_once(__DIR__ . "/../lib/functions.php");
                 <?php endif; ?>
                 <?php if (is_logged_in()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('cart.php'); ?>">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('checkout.php'); ?>">Checkout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('userHistory.php'); ?>">Purchase History</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
                 <?php endif; ?>
             </ul>
