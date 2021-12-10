@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
-
+//Checkout page after clicking cart button
 ?>
 <!DOCTYPE html>
 <html>
