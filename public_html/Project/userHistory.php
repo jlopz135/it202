@@ -1,6 +1,6 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
-
+//user can see their purhcase history
 if (!is_logged_in()) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: $BASE_PATH" . "home.php"));
@@ -39,7 +39,8 @@ try {
                 <?php endforeach; ?>
 
                 <td>
-                    <a href="#">List Items</a>
+                    <a href="orderDetails.php?id=<?php se($record, "id"); //see purchase details
+                    ?>">List Items</a>
                 </td>
             </tr>
         <?php endforeach; ?>
