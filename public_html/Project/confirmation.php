@@ -2,6 +2,7 @@
 
 <body>
     <?php
+    //this is the order confirmation page. to see order details button must be clicked. 
     require_once(__DIR__ . "/../../partials/nav.php");
     if (!is_logged_in()) {
         flash("You must be logged in to see this!");
