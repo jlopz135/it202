@@ -200,7 +200,8 @@ require_once(__DIR__ . "/../../partials/nav.php");
 
                     <p><a href="product_details.php?id=<?php se($item, "product_id"); ?>"><?php se($item, "name"); ?></a> <span class="price">$<?php echo $subtotal; ?> </span></p>
                 <?php $total = $total + $subtotal;
-                endforeach ?>
+                endforeach //cart items check, prices are grabbed accordingly. 
+                ?>
                 <p>Total <span class="price" style="color:black"><b>$<?php echo $total; ?></b></span></p>
 
             </div>
