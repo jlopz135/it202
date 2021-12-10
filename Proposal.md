@@ -114,7 +114,9 @@
      - Screenshots
        - Screenshot #1: ![image](https://user-images.githubusercontent.com/54092513/140845092-23a7e8f6-4143-43c0-864f-2643e19a1690.png)
           - Screenshot #1: If user wants to update password they are able to under profile page
+
 - Milestone 2 
+
   <table><tr><td>Milestone 2</td></tr><tr><td><table><tr><td>F1 - User with an admin role or shop owner role will be able to add products to inventory (2021-12-02)</td></tr><tr><td>Status: complete</td></tr><tr><td>Links:<p>
 
  [https://jl2237-prod.herokuapp.com/Project/admin/add_items.php](https://jl2237-prod.herokuapp.com/Project/admin/add_items.php)</p></td></tr><tr><td>PRs:<p>
