@@ -6,6 +6,7 @@ is_logged_in(true);
 if (isset($_POST["save"])) {
     $email = se($_POST, "email", null, false);
     $username = se($_POST, "username", null, false);
+    $vis = se($_POST, "visibility", null, false);
     $hasError = false;
     //sanitize
     $email = sanitize_email($email);
@@ -19,9 +20,9 @@ if (isset($_POST["save"])) {
         $hasError = true;
     }
     if (!$hasError) {
-        $params = [":email" => $email, ":username" => $username, ":id" => get_user_id()];
+        $params = [":email" => $email, ":username" => $username, ":id" => get_user_id(), ":vis" => $vis];
         $db = getDB();
-        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username where id = :id");
+        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username, visibility = :vis where id = :id");
         try {
             $stmt->execute($params);
         } catch (Exception $e) {
@@ -79,6 +80,8 @@ if (isset($_POST["save"])) {
         }
     }
 }
+
+
 ?>
 
 <?php
@@ -110,7 +113,12 @@ $username = get_username();
             <label class="form-label" for="conp">Confirm Password</label>
             <input class="form-control" type="password" name="confirmPassword" id="conp" />
         </div>
+        <div class="mb-4">
+            <label class="form-label" for="vis">Public (1) or Private (0)</label>
+            <input class="form-control" type="visibility" name="visibility" id="vis" />
+        </div>
         <input type="submit" class="mt-3 btn btn-primary" value="Update Profile" name="save" />
+        
     </form>
 </div>
 <script>
