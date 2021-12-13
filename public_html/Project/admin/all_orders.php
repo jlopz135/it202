@@ -29,7 +29,7 @@ try {
                     <?php foreach ($record as $column => $value) : ?>
                         <th><?php se($column); ?></th>
                     <?php endforeach; ?>
-                    <th>List Items</th>
+                    <th>Order Details</th>
                     
                 </thead>
             <?php endif; ?>
@@ -40,7 +40,7 @@ try {
 
                 <td>
                     <a href="../orderDetails.php?id=<?php se($record, "id"); //see purchase details
-                    ?>">List Items</a>
+                    ?>">Order Details</a>
                 </td>
             </tr>
         <?php endforeach; ?>
