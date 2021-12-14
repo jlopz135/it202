@@ -50,7 +50,8 @@ try {
                     <tbody>
                       <tr>
                         <td></td>
-                        <td>In Stock</td>
+                        <td>In Stock:</td>
+                        <td>Rating:</td>
                       </tr>
                       <tr>
                         <td class="pl-0">
@@ -62,10 +63,17 @@ try {
                           <div class="mt-1">
                             <div class="form-check form-check-inline pl-0">
                               <?php echo se($item, "stock"); ?>
-
                             </div>
-
                           </div>
+
+                        </td>
+                        <td>
+                          <div class="mt-1">
+                            <div class="form-check form-check-inline pl-0">
+                              Insert Rating <?php ?>
+                            </div>
+                          </div>
+                        </td>
                         </td>
                       </tr>
                     </tbody>
