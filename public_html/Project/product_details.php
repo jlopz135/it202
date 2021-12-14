@@ -1,5 +1,23 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
+if (isset($_POST["submit"])) {
+  $comment = $_POST['comment'];
+  $rating = $_POST['rating'];
+  $db = getDB();
+  $item_id = $_GET['id'];
+  $user = get_user_id();
+  $params = [":comment" => $comment, ":rating" => $rating, ":user_id" => get_user_id(), ":prod_id" => $item_id];
+
+  $query2 = "INSERT INTO ratings (product_id, user_id, rating, comment) VALUES (:prod_id, :user_id, :rating, :comment)";
+  $stmt2 = $db->prepare($query2);
+  try {
+    $stmt2->execute($params);
+    flash("INSERTED");
+  } catch (PDOException $e) {
+    flash("NOT WORKING");
+  }
+}
+
 $item_id = $_GET['id'];
 $results = [];
 $db = getDB();
@@ -13,6 +31,8 @@ try {
 } catch (PDOException $e) {
   flash("<pre>" . var_export($e, true) . "</pre>");
 }
+
+
 ?>
 <div class="container-fluid">
   <div class="row row-cols-1 row-cols-md-7 g-4">
@@ -70,7 +90,7 @@ try {
                         <td>
                           <div class="mt-1">
                             <div class="form-check form-check-inline pl-0">
-                              Insert Rating <?php ?>
+                              <?php echo $rating; ?> Stars
                             </div>
                           </div>
                         </td>
@@ -79,23 +99,26 @@ try {
                     </tbody>
                   </table>
                   <h2>LEAVE A REVIEW: </h2>
-                  <form action="shop.php" method="POST">
+                  <form onsubmit="myFunction()" method="POST">
                     <fieldset>
                       <span class="star-cb-group">
-                        <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
-                        <input type="radio" id="rating-5" name="rating" value="1" /><label for="rating-1">1</label>
-                        <input type="radio" id="rating-4" name="rating" value="2" /><label for="rating-2">2</label>
+                        <input type="radio" id="rating-1" name="rating" value="5" checked="checked" /><label for="rating-1">1</label>
+                        <input type="radio" id="rating-2" name="rating" value="4" /><label for="rating-2">2</label>
                         <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
-                        <input type="radio" id="rating-2" name="rating" value="4" /><label for="rating-4">4</label>
-                        <input type="radio" id="rating-1" name="rating" value="5" checked="checked" /><label for="rating-5">5</label>
+                        <input type="radio" id="rating-4" name="rating" value="2" /><label for="rating-4">4</label>
+                        <input type="radio" id="rating-5" name="rating" value="1" /><label for="rating-5">5</label>
                       </span>
                     </fieldset>
                     <label for="comment">Add Review Here: </label><br>
                     <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
                     <br><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" name="submit">
                   </form>
-
+                  <script>
+                    function myFunction() {
+                      alert("The Review was Submitted!");
+                    }
+                  </script>
                 </div>
               </div>
             </div>
