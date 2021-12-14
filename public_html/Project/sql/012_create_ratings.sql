@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `ratings` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `product_id` BIGINT NULL DEFAULT NULL,
+  `user_id` BIGINT NULL DEFAULT NULL,
+  `rating`  TINYINT,
+  `comment` text,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+)
