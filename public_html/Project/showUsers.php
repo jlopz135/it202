@@ -30,7 +30,7 @@ try {
             <tr><h3>Usernames:</h3>
             <?php foreach ($results as $result) : ?>
                 <td>
-                    <a href="profile.php?id=<?php se($result, 'user_id'); ?>"><?php se($result, "username"); ?></a>
+                    <a href="userProfile.php?id=<?php se($result, 'id'); ?>"><?php se($result, "username"); ?></a>
                     <?php $user_id = se($result, "user_id", 0, false);
                     $username = se($result, "username", "", false);
                     ?>
