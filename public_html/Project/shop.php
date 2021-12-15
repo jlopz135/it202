@@ -107,7 +107,9 @@ try {
                 <div class="col">
                     <div class="card bg-light">
                         <div class="card-header">
-                            <a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a>
+                            <?php if(has_role("Owner")):?><a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a><?php endif;?>
+                            <?php if(has_role("Admin")):?><a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a><?php endif;?>
+
                             <a href="product_details.php?id=<?php se($item, "id"); ?>"><?php se($item, "name"); ?></a>
                         </div>
                         <div class="card-body">

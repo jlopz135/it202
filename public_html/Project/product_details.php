@@ -12,9 +12,9 @@ if (isset($_POST["submit"])) {
   $stmt2 = $db->prepare($query2);
   try {
     $stmt2->execute($params);
-    flash("INSERTED");
+    flash("Thank you for your Review!");
   } catch (PDOException $e) {
-    flash("NOT WORKING");
+    flash("Error Receiving your Review");
   }
 }
 
