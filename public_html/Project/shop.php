@@ -5,7 +5,7 @@ $db = getDB();
 //Sort and Filters
 $col = se($_GET, "col", "unit_price", false);
 //allowed list
-if (!in_array($col, ["unit_price", "stock", "name", "category"])) {
+if (!in_array($col, ["unit_price", "stock", "name", "category", "avg_rating"])) {
     $col = "unit_price"; //default value, prevent sql injection
 }
 $order = se($_GET, "order", "asc", false);
@@ -15,7 +15,7 @@ if (!in_array($order, ["asc", "desc"])) {
 }
 $name = se($_GET, "name", "", false);
 //dynamic query
-$query = "SELECT id, name, description, unit_price, stock, img FROM Products WHERE 1=1 and stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
+$query = "SELECT id, name, description, unit_price, stock, img, avg_rating FROM Products WHERE 1=1 and stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
 $params = []; //define default params, add keys as needed and pass to execute
 //apply name filter
 if (!empty($name)) {
@@ -80,6 +80,7 @@ try {
                         <option value="stock">Stock</option>
                         <option value="name">Name</option>
                         <option value="category">Category</option>
+                        <option value="avg_rating">Average Rating</option>
                     </select>
                     <script type="text/javascript">
                         function update() {
