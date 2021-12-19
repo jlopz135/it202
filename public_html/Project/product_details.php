@@ -14,14 +14,14 @@ if (isset($_POST["submit"])) {
     $stmt2->execute($params);
     flash("Thank you for your Review!");
   } catch (PDOException $e) {
-    flash("Error Receiving your Review");
+    flash("You are not logged in");
   }
 }
 
 $item_id = $_GET['id'];
 $results = [];
 $db = getDB();
-$stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price, img FROM Products WHERE stock > 0 && visibility > 0 LIMIT 50"); // admins can't see because visibility checker but this shows how to create shop page for users
+$stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price, img, avg_rating FROM Products WHERE stock > 0 && visibility > 0 LIMIT 50"); // admins can't see because visibility checker but this shows how to create shop page for users
 try {
   $stmt->execute();
   $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -29,9 +29,22 @@ try {
     $results = $r;
   }
 } catch (PDOException $e) {
-  flash("<pre>" . var_export($e, true) . "</pre>");
+  flash("Error loading products page");
 }
 
+$yup = [];
+$db = getDB();
+$stmt2 = $db->prepare("UPDATE Products SET avg_rating = (SELECT ROUND(AVG(rating),0) FROM ratings WHERE Products.id = ratings.product_id)");
+try {
+  $stmt2->execute();
+  $r = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+  if ($r) {
+    $yup = $r;
+    
+  }
+} catch (PDOException $e) {
+  flash("Error Loading Average Ratings");
+}
 
 ?>
 <div class="container-fluid">
@@ -90,7 +103,14 @@ try {
                         <td>
                           <div class="mt-1">
                             <div class="form-check form-check-inline pl-0">
-                              <?php echo $rating; ?> Stars
+                              <?php 
+                              if(se($item, "avg_rating", 0 , false) > 0){
+                                echo se($item, "avg_rating"), " Stars";
+                                
+                              }else{
+                                echo "No Ratings Yet";
+                              }
+                              ?> 
                             </div>
                           </div>
                         </td>
