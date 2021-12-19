@@ -75,12 +75,21 @@ try {
                 <div class="input-group">
                     <div class="input-group-text">Sort</div>
                     <!-- make sure these match the in_array filter above-->
-                    <select class="form-control" name="col" value="<?php se($col); ?>">
-                        <option value="cost">Price</option>
+                    <select class="form-control" id="sort" onChange="update()" name="col" value="<?php se($col); ?>">
+                        <option value="unit_price">Price</option>
                         <option value="stock">Stock</option>
                         <option value="name">Name</option>
                         <option value="category">Category</option>
                     </select>
+                    <script type="text/javascript">
+                        function update() {
+                            var select = document.getElementById('sort');
+                            var option = select.options[select.selectedIndex];
+
+                        }
+
+                        update();
+                    </script>
                     <script>
                         //quick fix to ensure proper value is selected since
                         //value setting only works after the options are defined and php has the value set prior
@@ -111,8 +120,8 @@ try {
                 <div class="col">
                     <div class="card bg-light">
                         <div class="card-header">
-                            <?php if(has_role("Owner")):?><a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a><?php endif;?>
-                            <?php if(has_role("Admin")):?><a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a><?php endif;?>
+                            <?php if (has_role("Owner")) : ?><a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a><?php endif; ?>
+                            <?php if (has_role("Admin")) : ?><a href="admin/edit_item.php?id=<?php se($item, "id"); ?>"> EDIT: <?php se($item, "name"); ?></a><?php endif; ?>
 
                             <a href="product_details.php?id=<?php se($item, "id"); ?>"><?php se($item, "name"); ?></a>
                         </div>
