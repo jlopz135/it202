@@ -30,7 +30,7 @@ try {
                         <th><?php se($column); ?></th>
                     <?php endforeach; ?>
                     <th>Order Details</th>
-                    
+
                 </thead>
             <?php endif; ?>
             <tr>
@@ -40,19 +40,38 @@ try {
 
                 <td>
                     <a href="../orderDetails.php?id=<?php se($record, "id"); //see purchase details
-                    ?>">Order Details</a>
+                                                    ?>">Order Details</a>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
 
-   
 <?php endif; ?>
+<?php
+$db = getDB();
+//generally try to avoid SELECT *, but this is about being dynamic so I'm using it this time
+$query2 = "SELECT SUM(total_price) FROM orders Where 1=1"; //TODO change table name and desired columns
+$stmt2 = $db->prepare($query2);
+$results2 = [];
+try {
+    $stmt2->execute();
+    $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "<pre>" . var_export($e, true) . "</pre>";
+}
+
+?>
+<table>
+    TOTAL PRICE OF RESULTS: $<?php foreach ($results2 as $x) {
+    echo se($x, "SUM(total_price)");
+}?>
+</table>
+
 <style>
-    td, th{
+    td,
+    th {
         border: 1px solid black;
         padding: 3px 10px;
         justify-items: center;
     }
-
 </style>
