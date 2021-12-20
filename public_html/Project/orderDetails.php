@@ -19,7 +19,7 @@ try {
 }
 
 // ------------------------------------------------------------
-$query2 = "SELECT * FROM orderItems JOIN Products ON orderItems.product_id = Products.id WHERE order_id = $last_id and quantity > 0;";
+$query2 = "SELECT * FROM orderItems JOIN Products ON orderItems.product_id = Products.id WHERE order_id = $last_id and quantity > 0 LIMIT 10;";
 $stmt2 = $db->prepare($query2);
 $orderItems = [];
 try {

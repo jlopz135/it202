@@ -15,7 +15,7 @@ if (!in_array($order, ["asc", "desc"])) {
 }
 $name = se($_GET, "name", "", false);
 //dynamic query
-$query = "SELECT id, name, description, unit_price, stock, img, avg_rating FROM Products WHERE 1=1 and stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
+$query = "SELECT * FROM Products WHERE stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
 $params = []; //define default params, add keys as needed and pass to execute
 //apply name filter
 if (!empty($name)) {
@@ -115,7 +115,7 @@ try {
             </div>
         </form>
     </div><br><br><br>
-    <div class="row row-cols-1 g-1">
+    <div class="row row-cols-1 ">
         <?php foreach ($results as $item) : ?>
             <form id="add_to_cart" action="cart.php?" method="POST">
                 <div class="col">
@@ -135,8 +135,6 @@ try {
                         </div>
                         <div class="card-footer">
                             Cost: $<?php se($item, "unit_price"); ?>
-                            <!--<button onclick="purchase('<?php //se($item, 'id'); 
-                                                            ?>')" class="btn btn-primary">Add To Cart</button> -->
                             <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
                         </div>
 
@@ -149,3 +147,25 @@ try {
 <?php
 require(__DIR__ . "/../../partials/footer.php");
 ?>
+
+<?php
+if (!isset($total_pages)) {
+    $total_pages = 1;
+}
+if (!isset($page)) {
+    $page = 1;
+}
+?>
+<nav aria-label="Generic Pagination">
+    <ul class="pagination">
+        <li class="page-item <?php echo ($page - 1) < 1 ? "disabled" : ""; ?>">
+            <a class="page-link" href="?<?php se(persistQueryString($page - 1)); ?>" tabindex="-1">Previous</a>
+        </li>
+        <?php for ($i = 0; $i < $total_pages; $i++) : ?>
+            <li class="page-item <?php echo ($page - 1) == $i ? "active" : ""; ?>"><a class="page-link" href="?<?php se(persistQueryString($i + 1)); ?>"><?php echo ($i + 1); ?></a></li>
+        <?php endfor; ?>
+        <li class="page-item <?php echo ($page) >= $total_pages ? "disabled" : ""; ?>">
+            <a class="page-link" href="?<?php se(persistQueryString($page + 1)); ?>">Next</a>
+        </li>
+    </ul>
+</nav>

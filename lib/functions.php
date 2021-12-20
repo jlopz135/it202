@@ -222,28 +222,36 @@ function update_data($table, $id,  $data, $ignore = ["id", "submit"])
 }
 function filter()
 {
-    $db = getDB();
-    $query = "SELECT id, name, description, category, stock, unit_price, img FROM Products WHERE stock > 0 && visibility > 0";
-
-    if (isset($_POST['$filter'])) {
-        switch ($_POST['$filter']) {
-            case 'cat':
-                $query .= " ORDER BY category LIMIT 10";
-                break;
-            case 'high':
-                $query .= "ORDER BY unit_price DESC LIMIT 10";
-                break;
-            case 'low':
-                $query .= "ORDER BY unit_price DESC LIMIT 10";
-                break;
-        }
-        echo "selected size: " . htmlspecialchars($_POST['size']);
-    }
-    error_log($query);
-    $stmt = $db->prepare($query);
     $results = [];
+    $db = getDB();
+    //Sort and Filters
+    $col = se($_GET, "col", "cost", false);
+    //allowed list
+    if (!in_array($col, ["unit_price", "category", "name"])) {
+        $col = "unit_price"; //default value, prevent sql injection
+    }
+    $order = se($_GET, "order", "asc", false);
+    //allowed list
+    if (!in_array($order, ["asc", "desc"])) {
+        $order = "asc"; //default value, prevent sql injection
+    }
+    $name = se($_GET, "name", "", false);
+    //dynamic query
+    $query = "SELECT * FROM Products WHERE stock > 0 and visibility > 0"; //1=1 shortcut to conditionally build AND clauses
+    $params = []; //define default params, add keys as needed and pass to execute
+    //apply name filter
+    if (!empty($name)) {
+        $query .= " AND name like :name";
+        $params[":name"] = "%$name%";
+    }
+    //apply column and order sort
+    if (!empty($col) && !empty($order)) {
+        $query .= " ORDER BY $col $order"; //be sure you trust these values, I validate via the in_array checks above
+    }
+    $stmt = $db->prepare($query); //dynamically generated query
+    //$stmt = $db->prepare("SELECT id, name, description, cost, stock, image FROM BGD_Items WHERE stock > 0 LIMIT 50");
     try {
-        $stmt->execute();
+        $stmt->execute($params); //dynamically populated params to bind
         $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($r) {
             $results = $r;
@@ -253,7 +261,6 @@ function filter()
     }
     return $results;
 }
-
 
 
 function redirect($path)
@@ -270,6 +277,145 @@ function redirect($path)
     echo "<noscript><meta http-equiv=\"refresh\" content=\"0;url=" . get_url($path) . "\"/></noscript>";
     die();
 }
+function paginate($query, $params = [], $per_page = 10)
+{
+    global $page; //will be available after function is called
+    try {
+        $page = (int)se($_GET, "page", 1, false);
+    } catch (Exception $e) {
+        //safety for if page is received as not a number
+        $page = 1;
+    }
+    $db = getDB();
+    $stmt = $db->prepare($query);
+    try {
+        $stmt->execute($params);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("paginate error: " . var_export($e, true));
+    }
+    $total = 0;
+    if (isset($result)) {
+        $total = (int)se($result, "total", 0, false);
+    }
+    global $total_pages; //will be available after function is called
+    $total_pages = ceil($total / $per_page);
+    global $offset; //will be available after function is called
+    $offset = ($page - 1) * $per_page;
+}
+function persistQueryString($page)
+{
+    $_GET["page"] = $page;
+    return http_build_query($_GET);
+}
+
+function filterPurchase()
+{
+    $results = [];
+    $db = getDB();
+    //Sort and Filters
+    $col = se($_GET, "col", "created", false);
+    //allowed list
+    if (!in_array($col, ["created", "total_price"])) {
+        $col = "total_price"; //default value, prevent sql injection
+    }
+    $order = se($_GET, "order", "asc", false);
+    //allowed list
+    if (!in_array($order, ["asc", "desc"])) {
+        $order = "asc"; //default value, prevent sql injection
+    }
+    $name = se($_GET, "name", "", false);
+    $userId = get_user_id();
+    $base_query = "SELECT * FROM orders ";
+    $total_query = "SELECT count(1) as total FROM orders";
+    $query = " WHERE `user_id` = $userId";
+    $params = [];
+    if (!empty($name)) {
+        $query .= " AND name like :name";
+        $params[":name"] = "%$name%";
+    }
+    if (!empty($col) && !empty($order)) {
+        $query .= " ORDER BY $col $order"; 
+    }
+    $per_page = 10;
+    paginate($total_query . $query, $params, $per_page);
+    $page = se($_GET, "page", 1, false); 
+    $offset = ($page - 1) * $per_page;
+    $query .= " LIMIT :offset, :count";
+    $params[":offset"] = $offset;
+    $params[":count"] = $per_page;
+    //get the records
+    $stmt = $db->prepare($base_query . $query);
+    foreach ($params as $key => $value) {
+        $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+        $stmt->bindValue($key, $value, $type);
+    }
+    $params = NULL; 
+
+    try {
+        $stmt->execute($params);
+        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($r) {
+            $results = $r;
+        }
+    } catch (PDOException $e) {
+        flash("<pre>" . var_export($e, true) . "</pre>");
+    }
+    return $results;
+}
+
+function filterPurchase2()
+{
+    $results = [];
+    $db = getDB();
+    //Sort and Filters
+    $col = se($_GET, "col", "created", false);
+    //allowed list
+    if (!in_array($col, ["created", "total_price"])) {
+        $col = "total_price"; //default value, prevent sql injection
+    }
+    $order = se($_GET, "order", "asc", false);
+    //allowed list
+    if (!in_array($order, ["asc", "desc"])) {
+        $order = "asc"; //default value, prevent sql injection
+    }
+    $name = se($_GET, "name", "", false);
+    $userId = get_user_id();
+    $base_query = "SELECT * FROM orders ";
+    $total_query = "SELECT count(1) as total FROM orders";
+    $query = " WHERE 1=1";
+    $params = [];
+    if (!empty($name)) {
+        $query .= " AND name like :name";
+        $params[":name"] = "%$name%";
+    }
+    if (!empty($col) && !empty($order)) {
+        $query .= " ORDER BY $col $order"; 
+    }
+    $per_page = 10;
+    paginate($total_query . $query, $params, $per_page);
+    $page = se($_GET, "page", 1, false); 
+    $offset = ($page - 1) * $per_page;
+    $query .= " LIMIT :offset, :count";
+    $params[":offset"] = $offset;
+    $params[":count"] = $per_page;
+    //get the records
+    $stmt = $db->prepare($base_query . $query);
+    foreach ($params as $key => $value) {
+        $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+        $stmt->bindValue($key, $value, $type);
+    }
+    $params = null; 
+
+    try {
+        $stmt->execute($params);
+        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($r) {
+            $results = $r;
+        }
+    } catch (PDOException $e) {
+        flash("<pre>" . var_export($e, true) . "</pre>");
+    }
+    return $results;
+}
 ?>
-
-
