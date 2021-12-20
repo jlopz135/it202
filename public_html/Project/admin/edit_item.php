@@ -21,7 +21,7 @@ $ignore = ["id", "modified", "created"];
 $db = getDB();
 //get the item
 $id = se($_GET, "id", -1, false);
-$stmt = $db->prepare("SELECT * FROM Products where id =:id");
+$stmt = $db->prepare("SELECT name, description, category, stock, unit_price, visibility, img, Cart_Id FROM Products where id =:id");
 try {
     $stmt->execute([":id" => $id]);
     $r = $stmt->fetch(PDO::FETCH_ASSOC);

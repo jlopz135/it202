@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
 $item_id = $_GET['id'];
 $results = [];
 $db = getDB();
-$stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price, img, avg_rating FROM Products WHERE stock > 0 && visibility > 0 LIMIT 50"); // admins can't see because visibility checker but this shows how to create shop page for users
+$stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price, img, avg_rating FROM Products WHERE stock > 0 && visibility > 0 LIMIT 10"); // admins can't see because visibility checker but this shows how to create shop page for users
 try {
   $stmt->execute();
   $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
