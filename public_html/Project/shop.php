@@ -115,7 +115,7 @@ try {
             </div>
         </form>
     </div><br><br><br>
-    <div class="row row-cols-1 ">
+    <div class="row row-cols-1">
         <?php foreach ($results as $item) : ?>
             <form id="add_to_cart" action="cart.php?" method="POST">
                 <div class="col">
@@ -135,7 +135,7 @@ try {
                         </div>
                         <div class="card-footer">
                             Cost: $<?php se($item, "unit_price"); ?>
-                            <a href="cart.php?action=add&id=<?php se($item, "id"); ?>"> ADD TO CART </a>
+                            <a href="cart.php?action=add&id=<?php se($item, "id"); ?>" > ADD TO CART </a>
                         </div>
 
                     </div><br>

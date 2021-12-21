@@ -53,7 +53,7 @@ $name = se($_GET, "name", "", false);
         </div>
     </form>
     <br> 
-    <table class = "userHistory" style="width:50%";>
+    <table class = "userHistory" style="width:100%";>
         <tr>
             <th style="font-size: 18px; color: black; text-align: center;">ID</th>
             <th style="font-size: 18px; color: black; text-align: center;">User ID</th>

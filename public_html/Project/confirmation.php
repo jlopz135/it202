@@ -82,9 +82,9 @@
         try {
             $stmt2->execute();
             $lastID = $db->lastinsertid(); // Gets Last Order ID
-            flash("Order Created");
+            
         } catch (PDOException $e) {
-            flash("Order Error, try again");
+            flash("Order Error, please try again");
         }
         // copy cart details into the orderItems tables with the ORDER ID
         foreach ($results as $item) {
@@ -135,7 +135,6 @@
         } catch (PDOException $e) {
             flash("<pre>" . var_export($e, true) . "</pre>");
         }
-        flash($lastID);
         flash("THANK YOU FOR YOUR PURCHASE!");
     }
 

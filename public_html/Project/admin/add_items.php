@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
 
 $columns = get_columns("Products");
 
-$ignore = ["id", "modified", "created"];
+$ignore = ["id", "modified", "created", "avg_rating","Cart_Id"];
 ?>
 <div class="container-fluid">
     <h1>Add Item</h1>
