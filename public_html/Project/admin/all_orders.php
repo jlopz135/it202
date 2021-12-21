@@ -79,7 +79,7 @@ $orders = filterPurchase2();
     <?php
     $db = getDB();
     //generally try to avoid SELECT *, but this is about being dynamic so I'm using it this time
-    $query2 = "SELECT SUM(total_price) FROM orders Where 1=1"; //TODO change table name and desired columns
+    $query2 = "SELECT SUM(total_price) FROM orders"; //TODO change table name and desired columns
     $stmt2 = $db->prepare($query2);
     $results2 = [];
     try {

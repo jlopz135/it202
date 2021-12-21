@@ -53,9 +53,11 @@ flash("THANK YOU FOR YOUR ORDER");
             <th><?php se($item,"name")?></th>
             <th><?php se($item,"quantity")?></th>
             <th><?php se($item,"unit_price")?></th>
+
         </tr>
         <?php endforeach; ?>
     </table>
+    
 </body>
 
 </html>
