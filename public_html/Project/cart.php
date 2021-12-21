@@ -122,8 +122,8 @@ try {
                         </div>
                         <h5 class="card-title"> <?php se($item, "name"); ?></h5>
                         <p class="card-text"><?php se($item, "description"); ?></p>
-                        <a href="cart.php?action=remove&id=<?php se($item, "id"); ?>"> REMOVE ITEM</a><br>
-                        <a href="cart.php?action=add&id=<?php se($item, "product_id"); ?>"> ADD TO CART </a>
+                        <a href="cart.php?action=remove&id=<?php se($item, "id"); ?>">REMOVE ITEM</a><br>
+                        <a href="cart.php?action=add&id=<?php se($item, "product_id"); ?>">ADD ONE MORE</a>
                     </div>
                     <div class="card-footer">
                         Cost: $<?php se($item, "unit_price"); ?>
