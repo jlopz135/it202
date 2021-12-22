@@ -1,3 +1,5 @@
+https://mediaspace.njit.edu/id/1_agoxzslk
+
 # Project Name: Simple Shop
 ## Project Summary: This project will create a simple e-commerce site for users. Administrators or store owners will be able to manage inventory and users will be able to manage their cart and place orders.
 ## Github Link: https://github.com/jlopz135/it202-009/tree/prod
