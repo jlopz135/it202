@@ -145,36 +145,16 @@ try {
         <?php endif ?>
       <?php endforeach; ?>
         </div>
-  </div>
+  </div><?php
+  require(__DIR__ . "/../../partials/footer.php");
+  ?>
   <div>
     <?php
-    
-    $db = getDB();
-    $item_id = $_GET['id'];
-    
-    $query3 = "SELECT rating, comment FROM ratings where $item_id = ratings.product_id";
-    paginate($query3,[],3);
-    $stmt3 = $db->prepare($query3);
-    $rev=[];
-
-    try {
-      $stmt3->execute();
-      $r = $stmt3->fetchAll(PDO::FETCH_ASSOC);
-
-      if ($r) {
-        $rev = $r;  
-        echo $item_id;      
-      }
-
-    } catch (PDOException $e) {
-      flash("Error showing reviews");
-    }
+    $results = paginateReviews();
     ?>
-    <html>
-
-    <body>
+    
       <h3 align="center">Reviews</h3>
-      <?php if ($rev == NULL) : ?>
+      <?php if ($results == NULL) : ?>
         <p>No Reviews to Show</p>
       <?php else : ?>
         <table class="t1" style="width:100%" ;>
@@ -182,7 +162,7 @@ try {
             <th style="font-size: 18px; color: black; text-align: center;">Rating</th>
             <th style="font-size: 18px; color: black; text-align: center;">Review</th>
           </tr> 
-          <?php foreach ($rev as $item) : ?>
+          <?php foreach ($results as $item) : ?>
             <tr>
               <th><?php echo se($item, "rating") ?></th>
               <th><?php echo se($item, "comment") ?></th>
@@ -192,7 +172,8 @@ try {
       <?php endif; ?>
 
 
-
+ </div>
+        
 
     <?php
     if (!isset($total_pages)) {
@@ -207,17 +188,13 @@ try {
         <li class="page-item <?php echo ($page - 1) < 1 ? "disabled" : ""; ?>">
           <a class="page-link" href="?<?php se(persistQueryString($page - 1)); ?>" tabindex="-1">Previous</a>
         </li>
-        <?php for ($i = 0; $i < $total_pages; $i++) : ?>
+        <?php for ($i = 0; $i <= $total_pages; $i++) : ?>
           <li class="page-item <?php echo ($page - 1) == $i ? "active" : ""; ?>"><a class="page-link" href="?<?php se(persistQueryString($i + 1)); ?>"><?php echo ($i + 1); ?></a></li>
         <?php endfor; ?>
-        <li class="page-item <?php echo ($page) >= $total_pages ? "disabled" : ""; ?>">
+        <li class="page-item <?php echo ($page) < $total_pages ? "disabled" : ""; ?>">
           <a class="page-link" href="?<?php se(persistQueryString($page + 1)); ?>">Next</a>
         </li>
       </ul>
     </nav>
-  </div>
-        </body>
-        </html>
-  <?php
-  require(__DIR__ . "/../../partials/footer.php");
-  ?>
+  
+ 
