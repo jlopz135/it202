@@ -192,7 +192,285 @@
  [https://github.com/jlopz135/it202-009/pull/113](https://github.com/jlopz135/it202-009/pull/113)</p></td></tr><tr><td><table><tr><td>F4 - A list item can be clicked to view the full details in the Order Details Page<tr><td>Status: completed</td></tr><tr><td><img width="600px" src="https://user-images.githubusercontent.com/54092513/145632312-6ae58888-e75b-4260-a56f-f12a0663a629.png"><p>Store owner can see purchase history</td></tr></td></tr></table></td></tr></td></tr></table>
 
 - Milestone 4
-  <table><tr><td>milestone 4</td></tr><tr><td><table><tr><td>F1 - User can set their profile to be public or private (will need another column in Users table) ()</td></tr><tr><td>Status: pending</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F1 - if public, hide email addresses from other users<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><table><tr><td>F2 - User will be able to rate a product they purchased ()</td></tr><tr><td>Status: pending</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F2 - Create Table called Ratings<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F2 - Show 10 latest reviews on product details page with average and pagination<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><table><tr><td>F3 - User’s Purchase History Changes ()</td></tr><tr><td>Status: pending</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F3 - Filter date range and category<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - Sort by total, date purchased<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - Add pagination with filter applied<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><table><tr><td>F4 - Store Owner Purchase History Changes ()</td></tr><tr><td>Status: pending</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F4 - filter by date range, category<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F4 - sort by total, date purchase, etc<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F4 - Add pagination with applied filter<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F4 - show total for result page<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><table><tr><td>F5 - Add Pagination to Shop Page ()</td></tr><tr><td>Status: pending</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F5 - Pagination<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><table><tr><td>F6 - Store Owner will be able to see all products out of stock ()</td></tr><tr><td>Status: pending</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F6 - Pagination on this filter<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr><table><tr><td>F7 - User can sort products by average rating on the Shop Page ()</td></tr><tr><td>Status: pending</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F7 - Sort by Rating<tr><td>Status: pending</td></tr><tr><td><img width="600px" src=""><p></td></tr></td></tr></table></td></tr></td></tr></table>### Intructions
+
+<table>
+<tr><td>milestone 4</td></tr><tr><td>
+<table>
+<tr><td>F1 - User can set their profile to be public or private (will need another column in Users table) (2021-12-13)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://jl2237-prod.herokuapp.com/Project/showUsers.php](https://jl2237-prod.herokuapp.com/Project/showUsers.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/jlopz135/it202-009/pull/118](https://github.com/jlopz135/it202-009/pull/118)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F1 - if public, hide email addresses from other users</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147029507-42d761a4-e210-47df-90e2-1c451fee1b69.png">
+<p>Users emails hidden</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F2 - User will be able to rate a product they purchased (2021-12-13)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://jl2237-prod.herokuapp.com/Project/product_details.php?id=1](https://jl2237-prod.herokuapp.com/Project/product_details.php?id=1)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/jlopz135/it202-009/pull/120](https://github.com/jlopz135/it202-009/pull/120)</p><p>
+
+ [https://github.com/jlopz135/it202-009/pull/136](https://github.com/jlopz135/it202-009/pull/136)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F2 - Create Table called Ratings</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147029913-46a0139d-2b51-470e-8d84-e62b91f6c90d.png">
+<p>ratings table</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F2 - Show 10 latest reviews on product details page with average and pagination</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147029871-ad360d6b-97bb-451a-a100-689417976ad3.png">
+<p>pagination of reviews </p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F3 - User’s Purchase History Changes (2021-12-19)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://jl2237-prod.herokuapp.com/Project/userHistory.php?col=total_price&order=asc&page=1](https://jl2237-prod.herokuapp.com/Project/userHistory.php?col=total_price&order=asc&page=1)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/jlopz135/it202-009/pull/131](https://github.com/jlopz135/it202-009/pull/131)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F3 - Filter date range and category</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030095-c3af25dd-75b0-4279-9288-6f4ffe0d7c48.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F3 - Sort by total, date purchased</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030164-3bafea0a-7129-41f4-b7bf-5fa5d459a2a2.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F3 - Add pagination with filter applied</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030232-1f380af9-7df9-4964-a15a-f4667cf75521.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F4 - Store Owner Purchase History Changes (2021-12-19)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://jl2237-prod.herokuapp.com/Project/admin/all_orders.php](https://jl2237-prod.herokuapp.com/Project/admin/all_orders.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/jlopz135/it202-009/pull/131](https://github.com/jlopz135/it202-009/pull/131)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F4 - filter by date range, category</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030412-dfd0cfe5-44d6-4c1d-b480-88e465fc4c10.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - sort by total, date purchase, etc</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030473-2193882e-9ee5-429f-bb5d-b744b28fe66b.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - Add pagination with applied filter</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030560-fe68cadc-ef7e-4ec4-a05c-1ffd0430bc16.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - show total for result page</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030560-fe68cadc-ef7e-4ec4-a05c-1ffd0430bc16.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F5 - Add Pagination to Shop Page (2021-12-19)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://jl2237-prod.herokuapp.com/Project/shop.php](https://jl2237-prod.herokuapp.com/Project/shop.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/jlopz135/it202-009/pull/131](https://github.com/jlopz135/it202-009/pull/131)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F5 - Pagination</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030659-59ea8259-c827-42ec-b513-3c2030dfd311.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F6 - Store Owner will be able to see all products out of stock (2021-12-19)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://jl2237-prod.herokuapp.com/Project/admin/items.php](https://jl2237-prod.herokuapp.com/Project/admin/items.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/jlopz135/it202-009/pull/131](https://github.com/jlopz135/it202-009/pull/131)</p><p>
+
+ [https://github.com/jlopz135/it202-009/pull/132](https://github.com/jlopz135/it202-009/pull/132)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F6 - Pagination on this filter</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147030787-e9ea9ed8-b6e2-44b7-ae14-8b5cf89c4ad4.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F7 - User can sort products by average rating on the Shop Page (2021-12-18)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://jl2237-prod.herokuapp.com/Project/shop.php?name=&col=avg_rating&order=asc](https://jl2237-prod.herokuapp.com/Project/shop.php?name=&col=avg_rating&order=asc)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/jlopz135/it202-009/pull/125](https://github.com/jlopz135/it202-009/pull/125)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F7 - Sort by Rating</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/54092513/147031010-a0e677f9-9b47-4656-9c29-530ef1ee0815.png">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr></td></tr></table>
+### Intructions
 #### Don't delete this
 1. Pick one project type
 2. Create a proposal.md file in the root of your project directory of your GitHub repository
