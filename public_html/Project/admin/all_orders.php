@@ -14,7 +14,7 @@ $orders = filterPurchase2();
 <body>
     <h3 align="center">All Orders</h3>
     <?php if ($orders && count($orders) == 0) : ?>
-        <p>No orders!</p>
+        <p>No Order to Show</p>
     <?php else : ?>
         <form class="row row-cols-auto g-3 align-items-center">
             <div class="col">
