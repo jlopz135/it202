@@ -28,14 +28,23 @@ try {
     <table padding=5 style="text-align:left;">
         
             <tr><h3>Usernames:</h3>
-            <?php foreach ($results as $result) : ?>
+            <?php foreach ($results as $result) : 
+            
+                ?>
+                
                 <td>
                     <a href="userProfile.php?id=<?php se($result, 'id'); ?>"><?php se($result, "username"); ?></a>
                     <?php $user_id = se($result, "user_id", 0, false);
                     $username = se($result, "username", "", false);
                     ?>
                 </td>
-                <td><?php se($result, "created"); ?></td>
+                <td><?php se($result, "created"); ?> 
+                <br>
+                </td><td><?php
+                if( se($result, "visibility", 1, false)== "1") : 
+                    echo se($result, "email");
+                endif; 
+                ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
