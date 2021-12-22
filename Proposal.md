@@ -1,4 +1,4 @@
-https://mediaspace.njit.edu/id/1_agoxzslk
+https://mediaspace.njit.edu/id/1_wki281d6
 
 # Project Name: Simple Shop
 ## Project Summary: This project will create a simple e-commerce site for users. Administrators or store owners will be able to manage inventory and users will be able to manage their cart and place orders.
