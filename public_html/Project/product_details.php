@@ -40,7 +40,6 @@ try {
   $r = $stmt2->fetchAll(PDO::FETCH_ASSOC);
   if ($r) {
     $yup = $r;
-    
   }
 } catch (PDOException $e) {
   flash("Error Loading Average Ratings");
@@ -103,14 +102,13 @@ try {
                         <td>
                           <div class="mt-1">
                             <div class="form-check form-check-inline pl-0">
-                              <?php 
-                              if(se($item, "avg_rating", 0 , false) > 0){
+                              <?php
+                              if (se($item, "avg_rating", 0, false) > 0) {
                                 echo se($item, "avg_rating"), " Stars";
-                                
-                              }else{
+                              } else {
                                 echo "No Ratings Yet";
                               }
-                              ?> 
+                              ?>
                             </div>
                           </div>
                         </td>
@@ -147,7 +145,56 @@ try {
         <?php endif ?>
       <?php endforeach; ?>
         </div>
-  </div>
-  <?php
+  </div><?php
   require(__DIR__ . "/../../partials/footer.php");
   ?>
+  <div>
+    <?php
+    $results = paginateReviews();
+    ?>
+    
+      <h3 align="center">Reviews</h3>
+      <?php if ($results == NULL) : ?>
+        <p>No Reviews to Show</p>
+      <?php else : ?>
+        <table class="t1" style="width:100%" ;>
+          <tr>
+            <th style="font-size: 18px; color: black; text-align: center;">Rating</th>
+            <th style="font-size: 18px; color: black; text-align: center;">Review</th>
+          </tr> 
+          <?php foreach ($results as $item) : ?>
+            <tr>
+              <th><?php echo se($item, "rating") ?></th>
+              <th><?php echo se($item, "comment") ?></th>
+            </tr>
+          <?php endforeach; ?>
+        </table>
+      <?php endif; ?>
+
+
+ </div>
+        
+
+    <?php
+    if (!isset($total_pages)) {
+      $total_pages = 1;
+    }
+    if (!isset($page)) {
+      $page = 1;
+    }
+    ?>
+    <nav aria-label="Generic Pagination">
+      <ul class="pagination">
+        <li class="page-item <?php echo ($page - 1) < 1 ? "disabled" : ""; ?>">
+          <a class="page-link" href="?<?php se(persistQueryString($page - 1)); ?>" tabindex="-1">Previous</a>
+        </li>
+        <?php for ($i = 0; $i <= $total_pages; $i++) : ?>
+          <li class="page-item <?php echo ($page - 1) == $i ? "active" : ""; ?>"><a class="page-link" href="?<?php se(persistQueryString($i + 1)); ?>"><?php echo ($i + 1); ?></a></li>
+        <?php endfor; ?>
+        <li class="page-item <?php echo ($page) < $total_pages ? "disabled" : ""; ?>">
+          <a class="page-link" href="?<?php se(persistQueryString($page + 1)); ?>">Next</a>
+        </li>
+      </ul>
+    </nav>
+  
+ 
